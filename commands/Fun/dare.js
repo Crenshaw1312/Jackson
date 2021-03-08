@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const fetch = require('node-fetch');
+const funcs = require('../../funcs.js');
 
 module.exports = {
     name: "dare",
@@ -8,22 +9,13 @@ module.exports = {
     groups: ["fun"],
     aliases: ["d"],
     run: async (client, message, args) => {
-        // make random function
-        function choose(options) {
-            let choice = options[Math.floor(Math.random() * options.length)];
-            if (!args) return choice;
-            for (let option of options) {
-                if (option == args[1] || options == args[0]) choice = option;
-            }
-            return choice;
-        }
         // setting rating
-        let rating = choose(["pg", "pg13", "r"]);
-        let type = choose(["d", "irl"]);
+        let rating = funcs.choose(args, ["pg", "pg13", "r"], null);
+        let type = funcs.choose(args, ["d", "irl"], rating);
 
         let dare = (await fetch(`https://api.truthordarebot.xyz/dare?rating=${rating}&type=${type}`).then(response => response.json())).question;
 
-        if (!truth)return client.err(message, "Dare", "No dare was returned, try again or get support");
+        if (!dare)return client.err(message, "Dare", "No dare was returned, try again or get support");
 
         const embed = new MessageEmbed()
         .setTitle("Dare")

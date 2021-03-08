@@ -1,6 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const fetch = require('node-fetch');
 const NSFW = require("discord-nsfw");
+const funcs = require('../../funcs.js');
 const nsfw = new NSFW();
 
 module.exports = {
@@ -14,17 +15,20 @@ module.exports = {
         .setTitle('Hentai')
         .setColor(0x4B0082);
 
-        if (message.channel.nsfw) {
-            let pic = "";
-            if (args[0]) {
-                if (args[0] == "ass") {pic = await nsfw.hentaiass()}
-                if (args[0] == "thigh") {pic = await nsfhen.hentaithigh()}
-                if (args[0] == "midriff") {pic = await nsfw.hmidriff()}
-            } else {pic = await nsfw.hentai()}
-            embed.setImage(pic);
-        } else {
-            embed.setDescription("This is not an nsfw channel");
+        // get hentai kind
+        let hentai = funcs.choose(args, ["ass", "thigh", "midriff"], null);
+        embed.setFooter(`Hentai Type: ${hentai}`);
+
+        // get the hentai
+        let pic = "";
+        if (hentai == "ass") {
+            pic = await nsfw.hentaiass();
+        } else if (hentai == "thigh") {
+            pic = await nsfw.hentaithigh();
+        } else if (hentai == "midriff") {
+            pic = await nsfw.hmidriff();
         }
+            embed.setImage(pic);
         return message.reply(embed);
     }
 }
