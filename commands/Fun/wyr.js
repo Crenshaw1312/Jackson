@@ -13,7 +13,7 @@ module.exports = {
             let choice = options[Math.floor(Math.random() * options.length)];
             if (!args) return choice;
             for (let option of options) {
-                if (option == args[1] || options == args[0]) choice = option;
+                if (option == args[0]) choice = option;
             }
             return choice;
         }
