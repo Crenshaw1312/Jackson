@@ -21,13 +21,15 @@ module.exports = {
         let rating = choose(["pg", "pg13", "r"]);
         let type = choose(["d", "irl"]);
 
-        let truth = (await fetch(`https://api.truthordarebot.xyz/dare?rating=${rating}&type=${type}`).then(response => response.json())).question;
+        let dare = (await fetch(`https://api.truthordarebot.xyz/dare?rating=${rating}&type=${type}`).then(response => response.json())).question;
+
+        if (!truth)return client.err(message, "Dare", "No dare was returned, try again or get support");
 
         const embed = new MessageEmbed()
         .setTitle("Dare")
         .setColor(0x4B0082)
         .setFooter(`Rating: ${rating} - Type: ${type}`)
-        .setDescription(truth);
+        .setDescription(dare);
         return message.reply(embed);
     }
 }

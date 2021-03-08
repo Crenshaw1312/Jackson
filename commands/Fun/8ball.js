@@ -12,13 +12,8 @@ module.exports = {
         const embed = new MessageEmbed()
         .setTitle('8Ball')
         .setColor(0x4B0082);
-
-        if (args.length){
-            embed.setDescription(random);
-        }
-        else{
-            embed.setDescription('Please provide a question.')
-        }
+        if (!args[0])return client.err(message, "8ball", "Please provide a question");
+        embed.setDescription(random);
 
         return message.reply(embed);
     }

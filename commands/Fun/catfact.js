@@ -10,6 +10,7 @@ module.exports = {
     run: async (client, message, args) => {
         let fact = (await fetch("https://catfact.ninja/fact").then(response => response.json())).fact;
 
+        if (!fact) return client.err(message, "CatFact", "No catfact returned, try again or get support");
         const embed = new MessageEmbed()
         .setTitle('Cat Fact')
         .setColor(0x4B0082)
