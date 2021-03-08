@@ -2,11 +2,11 @@ const { MessageEmbed } = require("discord.js");
 const fetch = require('node-fetch');
 
 module.exports = {
-    name: "dare",
-    description: "Gives a random dare, can specify if irl or discord and rating.",
-    usage: "dare [pg|pg13|r] [irl|d]",
+    name: "wouldyourather",
+    description: "Gives a random would you rathe question",
+    usage: "wouldyourather [pg|pg13|r]",
     groups: ["fun"],
-    aliases: ["d"],
+    aliases: ["wyr"],
     run: async (client, message, args) => {
         // make random function
         function choose(options) {
@@ -19,15 +19,14 @@ module.exports = {
         }
         // setting rating
         let rating = choose(["pg", "pg13", "r"]);
-        let type = choose(["d", "irl"]);
 
-        let truth = (await fetch(`https://api.truthordarebot.xyz/dare?rating=${rating}&type=${type}`).then(response => response.json())).question;
+        let wyr = (await fetch(`https://api.truthordarebot.xyz/wyr?rating=${rating}`).then(response => response.json())).question;
 
         const embed = new MessageEmbed()
-        .setTitle("Dare")
+        .setTitle("Would You Rather")
         .setColor(0x4B0082)
-        .setFooter(`Rating: ${rating} - Type: ${type}`)
-        .setDescription(truth);
+        .setFooter(`Rating: ${rating}`)
+        .setDescription(wyr.replace("Would you rather ", ""));
         return message.reply(embed);
     }
 }
