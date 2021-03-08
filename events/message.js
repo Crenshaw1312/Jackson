@@ -10,6 +10,7 @@ exports.run = async (client, message) => {
     if (!command) return message.reply("Command not found");
     else{ 
         try {
+            if (command.groups[0] == "nsfw" && !message.channel.nsfw)return client.err(message, "NSFW", "This is not a NSFW channel.");;
             console.log(`Ran ${command.name} \[${args.join(" ")}\]- ${message.author.username}#${message.author.discriminator} \(${message.author.id}\)`);
             command.run(client, message, args);
         } catch (err) {

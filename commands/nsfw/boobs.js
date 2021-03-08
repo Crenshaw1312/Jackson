@@ -12,13 +12,9 @@ module.exports = {
     run: async (client, message, args) => {
         const embed = new MessageEmbed()
         .setTitle('Boobs')
-        .setColor(0x4B0082);
+        .setColor(0x4B0082)
+        .setImage(await nsfw.boobs());
 
-        if (message.channel.nsfw) {
-            embed.setImage(await nsfw.boobs());
-        } else {
-            embed.setDescription("This is not an nsfw channel");
-        }
         return message.reply(embed);
     }
 }
