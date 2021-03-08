@@ -12,6 +12,7 @@ module.exports = {
     description: "Searches Genius Lyrics for  a song and links them.",
     usage: "songsearch <song name>",
     groups: ["fun", "music"],
+    DM: false,
     aliases: ["ss"],
     run: async (client, message, args) => {
         const embed = new MessageEmbed()

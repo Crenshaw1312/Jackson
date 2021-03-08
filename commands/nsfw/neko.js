@@ -9,6 +9,7 @@ module.exports = {
     description: "Random image of neko(s) (api isn't good, not nekos)",
     usage: "neko [feet|pussy|tits]",
     groups: ["nsfw"],
+    DM: true,
     aliases: [],
     run: async (client, message, args) => {
         const embed = new MessageEmbed()

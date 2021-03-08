@@ -5,6 +5,7 @@ module.exports = {
     description: "Bans given member",
     usage: "ban <user>",
     groups: ["moderation"],
+    DM: false,
     aliases: [],
     run: async (client, message, args) => {
 

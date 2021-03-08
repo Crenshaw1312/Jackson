@@ -5,6 +5,7 @@ module.exports = {
     description: "Some general information about the bot",
     usage: "about",
     groups: ["information"],
+    DM: true,
     aliases: ["info"],
     run: async (client, message, args) => {
         const embed = new MessageEmbed()

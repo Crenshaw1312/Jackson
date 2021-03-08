@@ -7,6 +7,7 @@ module.exports = {
     description: "Gets definition from urban dictionary",
     usage: "define",
     groups: ["fun"],
+    DM: false,
     aliases: ["df", "urban", "ud"],
     run: async (client, message, args) => {
         const embed = new MessageEmbed()

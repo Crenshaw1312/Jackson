@@ -7,6 +7,7 @@ module.exports = {
     description: "Gives a random dare, can specify if irl or discord and rating.",
     usage: "dare [pg|pg13|r] [irl|d]",
     groups: ["fun"],
+    DM: false,
     aliases: ["d"],
     run: async (client, message, args) => {
         // setting rating

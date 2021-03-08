@@ -7,6 +7,7 @@ client.aliases = new Discord.Collection();
 client.desciption = new Discord.Collection();
 client.usage = new Discord.Collection();
 client.groups = new Discord.Collection();
+client.DM = new Discord.Collection();
 
 client.config = require("./config/config.js");
 

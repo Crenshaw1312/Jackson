@@ -7,6 +7,7 @@ module.exports = {
     description: "Gives a random would you rathe question",
     usage: "wouldyourather [pg|pg13|r]",
     groups: ["fun"],
+    DM: false,
     aliases: ["wyr"],
     run: async (client, message, args) => {
 

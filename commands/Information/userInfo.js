@@ -5,6 +5,7 @@ module.exports = {
     description: "Get the avatar of the triggering user or mentioned user",
     usage: "avatar [mention]",
     groups: ["information", "fun"],
+    DM: false,
     aliases: ["userinfo", "who"],
     run: async (client, message, args) => {
         const member = message.mentions.members.first() || message.member;

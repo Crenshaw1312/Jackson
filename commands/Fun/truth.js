@@ -8,6 +8,7 @@ module.exports = {
     description: "Gives a random truth",
     usage: "truth [pg|pg13|r]",
     groups: ["fun"],
+    DM: false,
     aliases: ["t"],
     run: async (client, message, args) => {
 

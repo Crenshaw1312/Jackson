@@ -9,6 +9,7 @@ module.exports = {
     description: "Gets hentai image",
     usage: "hentai [ass|thigh|midriff]",
     groups: ["nsfw"],
+    DM: true,
     aliases: ["hen"],
     run: async (client, message, args) => {
         const embed = new MessageEmbed()

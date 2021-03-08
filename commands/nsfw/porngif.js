@@ -8,6 +8,7 @@ module.exports = {
     description: "Random image of porngif",
     usage: "porngif",
     groups: ["nsfw"],
+    DM: true,
     aliases: ["pgif"],
     run: async (client, message, args) => {
         const embed = new MessageEmbed()

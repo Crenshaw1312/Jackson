@@ -5,6 +5,7 @@ module.exports = {
     description: "Show the websocket ping in milliseconds",
     usage: "ping",
     groups: ["information"],
+    DM: true,
     aliases: ["pong", "p"],
     run: async (client, message, args) => {
         const embed = new MessageEmbed()

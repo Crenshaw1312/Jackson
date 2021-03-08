@@ -8,6 +8,7 @@ module.exports = {
     description: "Random image of boobs",
     usage: "boobs",
     groups: ["nsfw"],
+    DM: true,
     aliases: ["tits"],
     run: async (client, message, args) => {
         const embed = new MessageEmbed()

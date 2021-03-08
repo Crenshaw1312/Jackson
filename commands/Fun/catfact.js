@@ -6,6 +6,7 @@ module.exports = {
     description: "Gives a random catfact",
     usage: "catfact",
     groups: ["fun"],
+    DM: true,
     aliases: ["cf"],
     run: async (client, message, args) => {
         let fact = (await fetch("https://catfact.ninja/fact").then(response => response.json())).fact;
