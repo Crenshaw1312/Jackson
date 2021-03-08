@@ -9,7 +9,12 @@ exports.run = async (client, message) => {
     let command = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
     if (!command) return message.reply("Command not found");
     else{ 
-        console.log(`Ran ${command.name} \[${args.join(" ")}\]- ${message.author.username}#${message.author.discriminator} \(${message.author.id}\)`);
-        command.run(client, message, args);
+        try {
+            console.log(`Ran ${command.name} \[${args.join(" ")}\]- ${message.author.username}#${message.author.discriminator} \(${message.author.id}\)`);
+            command.run(client, message, args);
+        } catch (err) {
+            client.channels.cache.get(client.config.logs.error).send({embed:{description:err}}).catch(console.error);
+            message.channel.send(`Command \`${command.name}\` Failed Executing, Contact Support.`);
+        }
     }
 }
