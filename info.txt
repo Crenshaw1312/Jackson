@@ -1,0 +1,22 @@
+Discord.js v12 bot template
+
+Template fully made by FuseKInDaHEAD#5450
+
+All features have been tested and working.
+
+The template contains:
+- Example commands ban and ping
+- event handler and command handler
+- sample event message
+
+What do you need to do to fire up the bot?
+- download node.js from this link: https://nodejs.org/en/
+- download npm (here tutorial: https://phoenixnap.com/kb/install-node-js-npm-on-windows)
+- create a bot (new applications) on discord's website https://discord.com/developers/applications
+- Invite the bot to your server disord (invitation generate on discord developer portal)
+- create a new terminal (bar at the top) and type "npm i" or "npm and discord.js" and "npm and chalk" (should create a folder "node_modules")
+- In config bot (./config/config.js) in the appropriate place enter the token of your bot and (optionally) another prefix
+- enter in the terminal at the bottom "node index.js".
+
+Now after taking all the steps, if you did everything correctly you should see on the server that your bot
+has an online status, and in the logos color-coded statuses of loading commands and events. Fun
