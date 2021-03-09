@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { MessageEmbed, Permissions } = require("discord.js");
 
 module.exports = {
     name: "kick",
@@ -8,6 +8,8 @@ module.exports = {
     DM: false,
     aliases: [],
     run: async (client, message, args) => {
+
+        if (message.member.permissions.has('KICK_MEMBERS') || message.member.permissions.has('ADMINISTRATOR')) return client.err(message, "Kick", 'You do not have permissons to kick');
 
         const embed = new MessageEmbed()
         .setTitle('Kick')
