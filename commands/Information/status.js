@@ -13,8 +13,9 @@ module.exports = {
         .setTitle('Status')
         .setColor(0x4B0082)
         .addFields(
-            {name: "Totals", value: `Users: ${client.users.cache.size}\nChannels: ${client.channels.cache.size}\nGuilds: ${client.guilds.cache.size}`, inline: true},
-            {name: "Uptime", value: `${ms(client.uptime)}`,inline: true}
+            {name: "Uptime", value: `${ms(client.uptime)}`,inline: true},
+            {name: "Databse", value: "SQLite", inline: true},
+            {name: "Totals", value: `Users: ${client.users.cache.size}\nChannels: ${client.channels.cache.size}\nGuilds: ${client.guilds.cache.size}`, inline: false}
         );
         return message.reply(embed);
     }
