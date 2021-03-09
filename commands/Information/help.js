@@ -43,26 +43,22 @@ module.exports = {
             if (command) {
                 embed.setTitle(`Help - ${command.name}`);
                 embed.setDescription("```css\n" + `\#Aliases \[${command.aliases.join(", ")}\]\n\#Usage \[${command.usage}\]\n\#Description \[${command.description}\]` + "\n```");
-            }else {
+            } else {
                 // Groups
-                if (groups[args[0]]) {
-                    let commands = groups[(args[0])];
-                    for (let c of commands) {
-                        command = client.commands.get(c);
-                        let aliases = "";
-                        if (command.aliases[0]) {
-                            aliases = "#Aliases \[" + command.aliases.join(", ") + "\]\n";
-                        }
-                        desc += `**${command.name}**\n` + "```css\n" + aliases + `\#Description \[${command.description}\]` + "\n```"
+                if (!groups[args[0]]) return;
+                let commands = groups[(args[0])];
+                for (let c of commands) {
+                    command = client.commands.get(c);
+                    let aliases = "";
+                    if (command.aliases[0]) {
+                        aliases = "#Aliases \[" + command.aliases.join(", ") + "\]\n";
                     }
-                    embed.setTitle(`Help - ${args[0]}`);
-                    embed.setDescription(desc);
-                } else {
-                    //not found
-                    embed.setTitle("No Purple Jelly Beans");
-                    embed.setDescription("Couldn't find that command/group");
+                    desc += `**${command.name}**\n` + "```css\n" + aliases + `\#Description \[${command.description}\]` + "\n```"
                 }
+                embed.setTitle(`Help - ${args[0]}`);
+                embed.setDescription(desc);
             }
+            if ((command.groups[0] == "nsfw" || args[0] == "nsfw") && !message.channel.nsfw) return client.err(message, "NSFW", "This is not a NSFW channel");
         }
         return message.reply(embed);
     }
