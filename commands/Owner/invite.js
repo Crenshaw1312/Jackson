@@ -1,5 +1,4 @@
 const { MessageEmbed, Permissions } = require("discord.js");
-const { inspect } = require('util');
 
 module.exports = {
     name: "invite",
