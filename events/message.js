@@ -16,13 +16,14 @@ exports.run = async (client, message) => {
             let database = new sqlite.Database('./jacksonDB.db', sqlite.OPEN_READWRITE);
             client.database = database
 
-            // errors
+            // errors and overrides
             if (command.DM === false && !message.guild) return client.err(message, "DMs", "This command cannot be ran in DMs");
             if (command.DM === true && !message.guild) {
                 console.log(`Ran (DM) ${command.name} \[${args.join(" ")}\]- ${message.author.username}#${message.author.discriminator} \(${message.author.id}\)`);
                  return command.run(client, message, args);
             }
             if (command.groups[0] == "nsfw" && !message.channel.nsfw) return client.err(message, "NSFW", "This is not a NSFW channel");
+            if (command.groups[0] == "owner" && message.author.id !== '766385575530856458') return client.err(message, "Crenshaw Only", "This command can only be run by the bot owner Crenshaw#1312");
 
             // no overrides or nsfw filters stopped the command, run normally
             console.log(`Ran (guild) ${command.name} \[${args.join(" ")}\]- ${message.author.username}#${message.author.discriminator} \(${message.author.id}\)`);

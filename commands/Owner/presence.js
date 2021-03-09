@@ -7,7 +7,6 @@ module.exports = {
     groups: ["owner"],
     aliases: ["pres"],
     run: async (client, message, args) => {
-        if (message.author.id !== '766385575530856458') return;
 
             client.user.setPresence({
                 status: 'online',

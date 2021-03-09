@@ -8,7 +8,6 @@ module.exports = {
     groups: ["owner"],
     aliases: ["ev"],
     run: async (client, message, args) => {
-        if (message.author.id !== '766385575530856458') return;
 
         const embed = new MessageEmbed()
         .setTitle('Eval')

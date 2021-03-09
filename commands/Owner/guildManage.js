@@ -13,7 +13,6 @@ module.exports = {
         .setColor(0x4B0082);
 
 // list guilds
-        if (message.author.id !== '766385575530856458') return;
         if (args[0] == "list") {
             let desc = "";
             for (let g of client.guilds.cache){
