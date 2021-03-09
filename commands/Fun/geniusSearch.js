@@ -1,11 +1,5 @@
 const { MessageEmbed } = require("discord.js");
 const { searchSong } = require('genius-lyrics-api');
-const options = {
-    apiKey: 's3SVZNVUvyDfnoUng9GU7T4NzgXCQUi2BvIzO7GxhIyNWSFN0tZMH_THRVLkEvVV',
-    title: "",
-    artist: "",
-    optimizeQuery: true
-};
 
 module.exports = {
     name: "songsearch",
@@ -15,6 +9,13 @@ module.exports = {
     DM: false,
     aliases: ["ss"],
     run: async (client, message, args) => {
+        const options = {
+            apiKey: client.config.geniusToken,
+            title: "",
+            artist: "",
+            optimizeQuery: true
+        };
+
         const embed = new MessageEmbed()
         .setTitle('Genius Search')
         .setColor(0x4B0082);

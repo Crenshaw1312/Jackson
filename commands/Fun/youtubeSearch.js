@@ -1,6 +1,5 @@
 const YouTube = require("simple-youtube-api");
 const { MessageEmbed } = require("discord.js");
-const youtube = new YouTube("AIzaSyDqrUGStuNvVZ12njTl_4ArBN0dQhPYROw");
 
 module.exports = {
     name: "youtubesearch",
@@ -9,6 +8,8 @@ module.exports = {
     groups: ["fun"],
     aliases: ["yts"],
     run: async (client, message, args) => {
+
+        const youtube = new YouTube(client.config.youtubeToken);
 
         const embed = new MessageEmbed()
         .setTitle("YouTube")

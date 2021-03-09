@@ -1,16 +1,9 @@
 const { MessageEmbed } = require("discord.js");
 const { searchSong, getSong } = require('genius-lyrics-api');
 const fetch = require('node-fetch');
+const { config } = require("process");
 const querystring = require('querystring');
 const YouTube = require("simple-youtube-api");
-
-const youtube = new YouTube("AIzaSyDqrUGStuNvVZ12njTl_4ArBN0dQhPYROw");
-const options = {
-    apiKey: 's3SVZNVUvyDfnoUng9GU7T4NzgXCQUi2BvIzO7GxhIyNWSFN0tZMH_THRVLkEvVV',
-    title: "",
-    artist: "",
-    optimizeQuery: true
-};
 
 module.exports = {
     name: "lyrics",
@@ -19,6 +12,14 @@ module.exports = {
     groups: ["fun", "music"],
     aliases: ["lyr"],
     run: async (client, message, args) => {
+
+        const youtube = new YouTube(client.config.youtubeToken);
+        const options = {
+            apiKey: client.config.geniusToken,
+            title: "",
+            artist: "",
+            optimizeQuery: true
+        };
         
         const embed = new MessageEmbed()
         .setColor(0x4B0082)
