@@ -1,3 +1,4 @@
+// choose, if in args use args
 exports.choose = function choose(args, options, not) {
     let choice = options[Math.floor(Math.random() * options.length)];
     if (!args) return choice;
