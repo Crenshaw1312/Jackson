@@ -1,9 +1,11 @@
-const sqlite = require("sqlite3").verbose();
+const database = require("quick.db");
+const config = require('../config/config.js');
 
 exports.run = async (client, message) => {
-    if (message.author.bot || !message.content.startsWith(client.config.prefix)) return;
+    let prefix = await database.fetch(`prefix_${message.guild.id}`) || client.config.prefix;
 
-    const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
+    if (message.author.bot || !message.content.startsWith(prefix)) return;
+    const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const cmd = args.shift().toLowerCase();
     
     if (cmd.length === 0) return;
@@ -12,10 +14,6 @@ exports.run = async (client, message) => {
     if (!command) return message.reply("Command not found");
     else{ 
         try {
-            // database
-            let database = new sqlite.Database('./jacksonDB.db', sqlite.OPEN_READWRITE);
-            client.database = database
-
             // errors and overrides
             if (command.DM === false && !message.guild) return client.err(message, "DMs", "This command cannot be ran in DMs");
             if (command.DM === true && !message.guild) {

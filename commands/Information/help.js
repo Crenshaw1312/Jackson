@@ -14,7 +14,7 @@ module.exports = {
         .setColor(0x4B0082)
         .setFooter("prefix is 'jack'");
         let desc = "";
-        let groups = {"information":[], "nsfw": [], "fun": [], "owner": [], "moderation": [], "music": []}; 
+        let groups = {"information":[], "utilites": [], "nsfw": [], "fun": [], "owner": [], "moderation": [], "music": []}; 
         for (let c of client.commands) {
             for (let g of c[1].groups) {
                 groups[g].push(c[0]);

@@ -1,10 +1,9 @@
-const sqlite = require("sqlite3").verbose();
+const database = require("quick.db");
 
 exports.run = async (client, reaction, message) => {
     console.log("Jackson is online");
 
     // database
-    const database = new sqlite.Database('./jacksonDB.db', sqlite.OPEN_READWRITE || sqlite.OPEN_CREATE);
     if (database) {
         console.log("Jackson DB activated");
     } else {
