@@ -1,10 +1,11 @@
 const { MessageEmbed } = require("discord.js");
 const database = require("quick.db");
+const config = require("../../config/config");
 
 module.exports = {
     name: "prefix",
     description: "Show the websocket ping in milliseconds",
-    usage: "prefix [new prefix]",
+    usage: "prefix [new prefix|reset]",
     groups: ["utilites"],
     DM: true,
     aliases: ["setprefix"],
@@ -24,7 +25,7 @@ module.exports = {
         const embed = new MessageEmbed()
         .setTitle("Prefix")
         .setColor(0x4B0082)
-        .setDescription(`Prefix has been set to: ${args[0]}`);
+        .setDescription(`Prefix has been set to: ${await database.fetch(`prefix_${message.guild.id}`) || client.config.prefix}`);
         return message.reply(embed);
     }
 }
