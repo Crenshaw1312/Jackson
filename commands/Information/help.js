@@ -4,7 +4,7 @@ module.exports = {
     name: "help",
     description: "Shows a basic help embed",
     usage: "help",
-    groups: ["owner"],
+    groups: ["information"],
     DM: true,
     aliases: ["h"],
     run: async (client, message, args) => {
