@@ -19,7 +19,7 @@ module.exports = {
 
         // get the amount, otherwise just reset
         let amount = (args[1] || "0");
-        amount = Number(amount.match(/^[0-9]+$/gm));
+        amount = Number(amount.match(/^\-?[0-9]+$/gm));
         
 
         // set up and get database information
