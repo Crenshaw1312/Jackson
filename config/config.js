@@ -3,4 +3,8 @@ module.exports = {
     prefix: "jack",
     youtubeToken: "AIzaSyDqrUGStuNvVZ12njTl_4ArBN0dQhPYROw",
     geniusToken: "s3SVZNVUvyDfnoUng9GU7T4NzgXCQUi2BvIzO7GxhIyNWSFN0tZMH_THRVLkEvVV",
+    jellybeans: {
+        maxGive: 3,
+        maxTake: 1
+    }
 }

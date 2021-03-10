@@ -17,6 +17,9 @@ exports.run = async (client, message) => {
     
     if (cmd.length === 0) return;
     
+    // Configurable Jelly bean data :3
+    client.jellybean = await database.get(`${message.guild.id}.jellybeandata`);
+
     let command = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
     if (!command) return message.reply("Command not found");
     else{ 

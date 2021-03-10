@@ -14,7 +14,7 @@ module.exports = {
         .setColor(0x4B0082)
         .setFooter("prefix is 'jack'");
         let desc = "";
-        let groups = {"information":[], "animals": [], "utilites": [], "nsfw": [], "fun": [], "owner": [], "moderation": [], "music": []}; 
+        let groups = {"information":[], "jellybean": [], "animals": [], "utilites": [], "nsfw": [], "fun": [], "owner": [], "moderation": [], "music": []}; 
         for (let c of client.commands) {
             for (let g of c[1].groups) {
                 groups[g].push(c[0]);
@@ -29,6 +29,7 @@ module.exports = {
                 { name: 'Fun', value: "`help fun`", inline: true },
                 { name: 'Moderation', value: "`help moderation`", inline: true },
                 { name: 'NSFW', value: "`help nsfw`", inline: true },
+                { name: 'Jelly Beans', value: "`help jellybean`", inline: true },
             )
             if (message.author.id == 766385575530856458) {
                 embed.addFields({ name: "Owner", value: "`help owner`", inline: true });
