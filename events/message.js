@@ -5,7 +5,11 @@ exports.run = async (client, message) => {
     let args = [];
     if (message.mentions.users.first() == client.user)  return await client.commands.get("help").run(client, message, args);
 
-    let prefix = await database.fetch(`prefix_${message.guild.id}`) || client.config.prefix;
+    let prefix = await database.get(`${message.guild.id}.prefix`)
+    if (!prefix) {
+        prefix = client.config.prefix
+        database.set(`${message.guild.id}.prefix`, client.config.prefix);
+    }
 
     if (message.author.bot || !message.content.startsWith(prefix)) return;
     args = message.content.slice(prefix.length).trim().split(/ +/g);
