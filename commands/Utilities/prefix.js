@@ -7,7 +7,7 @@ module.exports = {
     description: "Show the websocket ping in milliseconds",
     usage: "prefix [new prefix|reset]",
     groups: ["utilites"],
-    DM: true,
+    DM: false,
     aliases: ["setprefix"],
     run: async (client, message, args) => {
 
