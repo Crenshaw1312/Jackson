@@ -13,7 +13,7 @@ module.exports = {
         const embed = new MessageEmbed()
         .setColor(0x4B0082);
         const user = message.mentions.users.first();
-        const maxTake = client.config.jellybeans.maxTake
+        const maxTake = client.jellybean.maxTake
         // errors
         if (!user ) return client.err(message, "Jelly Bean Take", "Provide a user to take jelly bean(s) to");
         if (user == message.author) return client.err(message, "Jelly Bean Take", "You cannot take yourself jellybeans");
