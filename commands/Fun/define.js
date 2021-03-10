@@ -8,7 +8,7 @@ module.exports = {
     usage: "define",
     groups: ["fun"],
     DM: false,
-    aliases: ["df", "urban", "ud"],
+    aliases: ["def", "urban", "ud"],
     run: async (client, message, args) => {
         const embed = new MessageEmbed()
         .setColor(0x4B0082);
