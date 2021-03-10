@@ -1,0 +1,4 @@
+node_modules
+jacksonDB.db
+json.sqlite
+config/config.js
