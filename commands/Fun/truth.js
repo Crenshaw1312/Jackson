@@ -17,7 +17,7 @@ module.exports = {
 
         let truth = (await fetch(`https://api.truthordarebot.xyz/truth?rating=${rating}`).then(response => response.json())).question;
 
-        if (!truth)return client.err(message, "Truth", "No dare was returned, try again or get support");
+        if (!truth)return client.err(message, "Truth", "No truth was returned, try again or get support");
 
         const embed = new MessageEmbed()
         .setTitle("Truth")
