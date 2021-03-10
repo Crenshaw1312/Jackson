@@ -1,4 +1,6 @@
 const { MessageEmbed } = require("discord.js");
+const funcs = require('../../funcs.js');
+const database = require("quick.db");
 
 module.exports = {
     name: "userinfo",
@@ -37,10 +39,14 @@ module.exports = {
             }
         }
 
+        // get jelly beans
+        let jellybeans = await database.get(`${message.guild.id}.${user.id}.jellybeans`);
+
         // add fields
         embed.addFields([
             {name: "Status", value: status, inline: true},
             {name: "ID", value: `\`${user.id}\``, inline: true},
+            {name: "Jelly Beans", value: jellybeans, inline: true}
         ]);
         if (member.nickname) {
             embed.addField("Nickname", member.nickname, true);
