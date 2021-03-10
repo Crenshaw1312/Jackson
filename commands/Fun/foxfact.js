@@ -7,7 +7,7 @@ module.exports = {
     usage: "fox fact",
     groups: ["fun", "animals"],
     DM: true,
-    aliases: ["f"],
+    aliases: ["ff"],
     run: async (client, message, args) => {
         let fact = (await fetch("https://some-random-api.ml/facts/fox").then(response => response.json())).fact;
 
