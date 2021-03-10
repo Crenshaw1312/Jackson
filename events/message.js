@@ -2,10 +2,13 @@ const database = require("quick.db");
 const config = require('../config/config.js');
 
 exports.run = async (client, message) => {
+    let args = [];
+    if (message.mentions.users.first() == client.user)  return await client.commands.get("help").run(client, message, args);
+
     let prefix = await database.fetch(`prefix_${message.guild.id}`) || client.config.prefix;
 
     if (message.author.bot || !message.content.startsWith(prefix)) return;
-    const args = message.content.slice(prefix.length).trim().split(/ +/g);
+    args = message.content.slice(prefix.length).trim().split(/ +/g);
     const cmd = args.shift().toLowerCase();
     
     if (cmd.length === 0) return;
