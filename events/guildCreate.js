@@ -8,7 +8,7 @@ exports.run = async (client, guild) => {
         .setTitle(`New Guild - ${guild.name}`);
     channel.send(embed);
 
-    database.set(guild.id, {"prefix": client.config.prefix});
+    await database.set(guild.id, {"prefix": client.config.prefix});
 
     channel = guild.systemChannel;
     if(!channel) return;

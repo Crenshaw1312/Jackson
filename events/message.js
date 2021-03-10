@@ -8,7 +8,7 @@ exports.run = async (client, message) => {
     let prefix = await database.get(`${message.guild.id}.prefix`)
     if (!prefix) {
         prefix = client.config.prefix
-        database.set(`${message.guild.id}.prefix`, client.config.prefix);
+        await database.set(`${message.guild.id}.prefix`, client.config.prefix);
     }
 
     if (message.author.bot || !message.content.startsWith(prefix)) return;
