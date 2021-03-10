@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 module.exports = {
     name: "dogfact",
     description: "Gives a random dog fact",
-    usage: "dog fact",
+    usage: "dogfact",
     groups: ["fun", "animals"],
     DM: true,
     aliases: ["df"],

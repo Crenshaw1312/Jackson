@@ -51,7 +51,7 @@ module.exports = {
                     command = client.commands.get(c);
                     desc += `**${command.name}**, `
                 }
-                desc = "Use `jack help <command name>` for more on that command\n" + desc;
+                desc = "Use `jack help <command name>` for more on that command\n" + desc.slice(0, (desc.length - 2));
                 embed.setTitle(`Help - ${args[0]}`);
                 embed.setDescription(desc);
             }

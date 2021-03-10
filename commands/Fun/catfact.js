@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 module.exports = {
     name: "catfact",
     description: "Gives a random cat fact",
-    usage: "cat fact",
+    usage: "catfact",
     groups: ["fun", "animals"],
     DM: true,
     aliases: ["cf"],
