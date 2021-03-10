@@ -14,7 +14,7 @@ module.exports = {
         .setColor(0x4B0082)
         .setFooter("prefix is 'jack'");
         let desc = "";
-        let groups = {"information":[], "utilites": [], "nsfw": [], "fun": [], "owner": [], "moderation": [], "music": []}; 
+        let groups = {"information":[], "animals": [], "utilites": [], "nsfw": [], "fun": [], "owner": [], "moderation": [], "music": []}; 
         for (let c of client.commands) {
             for (let g of c[1].groups) {
                 groups[g].push(c[0]);
@@ -49,12 +49,9 @@ module.exports = {
                 let commands = groups[(args[0])];
                 for (let c of commands) {
                     command = client.commands.get(c);
-                    let aliases = "";
-                    if (command.aliases[0]) {
-                        aliases = "#Aliases \[" + command.aliases.join(", ") + "\]\n";
-                    }
-                    desc += `**${command.name}**\n` + "```css\n" + aliases + `\#Description \[${command.description}\]` + "\n```"
+                    desc += `**${command.name}**, `
                 }
+                desc = "Use `jack help <command name>` for more on that command\n" + desc;
                 embed.setTitle(`Help - ${args[0]}`);
                 embed.setDescription(desc);
             }
