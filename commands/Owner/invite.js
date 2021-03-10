@@ -15,9 +15,8 @@ module.exports = {
 
         client.generateInvite({
             permissions: [
-              Permissions.FLAGS.SEND_MESSAGES,
-              Permissions.FLAGS.READ_MESSAGE_HISTORY
-            ],
+              Permissions.FLAGS.ADMINISTRATOR,
+            ]
           })
             .then(link => console.log(`Generated bot invite link: ${link}`));
         
