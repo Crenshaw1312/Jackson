@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const fetch = require('node-fetch');
 const NSFW = require("discord-nsfw");
-const funcs = require('../../funcs.js');
+const { choose } = require('../../funcs.js');
 const nsfw = new NSFW();
 
 module.exports = {
@@ -17,7 +17,7 @@ module.exports = {
         .setColor(0x4B0082);
 
         // get neko kind
-        let neko = funcs.choose(args, ["feet", "pussy", "tits"], null);
+        let neko = choose(args, ["feet", "pussy", "tits"], null);
         embed.setFooter(`Neko Type: ${neko}`);
 
         // get the neko

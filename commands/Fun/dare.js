@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const fetch = require('node-fetch');
-const funcs = require('../../funcs.js');
+const { choose } = require('../../funcs.js');
 
 module.exports = {
     name: "dare",
@@ -11,8 +11,8 @@ module.exports = {
     aliases: ["d"],
     run: async (client, message, args) => {
         // setting rating
-        let rating = funcs.choose(args, ["pg", "pg13", "r"], null);
-        let type = funcs.choose(args, ["d", "irl"], rating);
+        let rating = choose(args, ["pg", "pg13", "r"], null);
+        let type = choose(args, ["d", "irl"], rating);
 
         let dare = (await fetch(`https://api.truthordarebot.xyz/dare?rating=${rating}&type=${type}`).then(response => response.json())).question;
 

@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const fetch = require('node-fetch');
-const funcs = require('../../funcs.js');
+const { choose } = require('../../funcs.js');
 
 
 module.exports = {
@@ -13,7 +13,7 @@ module.exports = {
     run: async (client, message, args) => {
 
         // setting rating
-        let rating = funcs.choose(args, ["pg", "pg13", "r"], null);
+        let rating = choose(args, ["pg", "pg13", "r"], null);
 
         let truth = (await fetch(`https://api.truthordarebot.xyz/truth?rating=${rating}`).then(response => response.json())).question;
 
