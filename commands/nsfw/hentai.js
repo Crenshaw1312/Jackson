@@ -17,7 +17,7 @@ module.exports = {
         .setColor(0x4B0082);
 
         // get hentai kind
-        let hentai = choose(args, ["ass", "thigh", "midriff"], null);
+        let hentai = await choose(args, ["ass", "thigh", "midriff"], null);
         embed.setFooter(`Hentai Type: ${hentai}`);
 
         // get the hentai

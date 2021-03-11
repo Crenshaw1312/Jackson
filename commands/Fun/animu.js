@@ -13,7 +13,7 @@ module.exports = {
     run: async (client, message, args) => {
 
         // setting rating
-        let animu = choose(args, ["hug", "pat", "wink", "face-palm"], null);
+        let animu = await choose(args, ["hug", "pat", "wink", "face-palm"], null);
 
         let gif = (await fetch(`https://some-random-api.ml/animu/${animu}`).then(response => response.json())).link;
 

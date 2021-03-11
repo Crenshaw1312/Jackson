@@ -1,6 +1,6 @@
 const { MessageEmbed, Guild } = require("discord.js");
 const databse = require("quick.db");
-const funcs = require('../../funcs.js');
+const { createAccount } = require('../../funcs.js');
 
 module.exports = {
     name: "jellybeangive",
@@ -25,7 +25,7 @@ module.exports = {
 
         // set up and get database information
         let guildUserAccount = await databse.get(`${message.guild.id}.${user.id}`)
-        if (!guildUserAccount) guildUserAccount = await funcs.createAccount(message);
+        if (!guildUserAccount) guildUserAccount = await createAccount(message);
 
         // add the jelly bean(s)
         databse.add(`${message.guild.id}.${user.id}.jellybeans`, amount)

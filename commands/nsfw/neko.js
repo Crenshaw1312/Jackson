@@ -17,10 +17,11 @@ module.exports = {
         .setColor(0x4B0082);
 
         // get neko kind
-        let neko = choose(args, ["feet", "pussy", "tits"], null);
+        let neko = await choose(args, ["feet", "pussy", "tits"], null);
         embed.setFooter(`Neko Type: ${neko}`);
 
         // get the neko
+        let pic = "";
         if (neko == "feet") {
             pic = await nsfw.nekofeet();
         } else if (neko == "pussy") {

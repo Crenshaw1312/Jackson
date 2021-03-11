@@ -16,7 +16,7 @@ module.exports = {
 
         // set up and get database information
         let guildUserAccount = await databse.get(`${message.guild.id}.${user.id}`)
-        if (!guildUserAccount) guildUserAccount = await funcs.createAccount(message);
+        if (!guildUserAccount) guildUserAccount = await createAccount(message);
 
         embed.setTitle(`Jelly Beans: ${user.username}\#${user.discriminator}`);
         embed.setDescription(`This user has \`${guildUserAccount.jellybeans}\` jelly beans`);

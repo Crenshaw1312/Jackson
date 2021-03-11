@@ -13,7 +13,7 @@ module.exports = {
     run: async (client, message, args) => {
 
         // setting rating
-        let rating = choose(args, ["pg", "pg13", "r"], null);
+        let rating = await choose(args, ["pg", "pg13", "r"], null);
 
         let truth = (await fetch(`https://api.truthordarebot.xyz/truth?rating=${rating}`).then(response => response.json())).question;
 

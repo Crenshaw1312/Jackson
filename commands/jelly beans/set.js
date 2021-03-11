@@ -24,7 +24,7 @@ module.exports = {
 
         // set up and get database information
         let guildUserAccount = await databse.get(`${message.guild.id}.${user.id}`)
-        if (!guildUserAccount) guildUserAccount = await funcs.createAccount(message);
+        if (!guildUserAccount) guildUserAccount = await createAccount(message);
 
         // add the jelly bean(s), this now makes guildUserAccount in this instance their OLD count, which we use later
         databse.set(`${message.guild.id}.${user.id}.jellybeans`, amount)
