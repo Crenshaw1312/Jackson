@@ -22,6 +22,7 @@ Their favourite candies are purple jelly beans, so I made a simple jelly bean sy
     - Using Github
 - **Specky#6281** and **Joe_#001**
     - Helping me with git
+    - Teaching me about caches
 
 ## Features
 >There are no cooldowns yet, will be added in the future
