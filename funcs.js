@@ -16,3 +16,12 @@ exports.createAccount = async function createAccount(message) {
     await database.set(`${message.guild.id}.${user.id}`, {"jellybeans": 0});
     return await database.get(`${message.guild.id}.${user.id}`);
 }
+
+// get last X messages
+exports.fetchMessages = async function (channel, amount) {
+    let messagesFormatted = "";
+    await channel.messages.fetch({ limit: amount }).then(messages => {
+        messagesFormatted = Array.from(messages.values());
+    });
+    return messagesFormatted;
+}
