@@ -6,7 +6,8 @@ exports.run = async (client, message) => {
     if (message.author.bot) return;
 
     let args = [];
-    if (message.mentions.users.first() == client.user)  return await client.commands.get("help").run(client, message, args);
+    let clientMention = `<@!${client.user.id}>`;
+    if (message.content == (clientMention))  return await client.commands.get("help").run(client, message, args);
 
     // prefix
     let prefix = await database.get(`${message.guild.id}.prefix`)
@@ -14,6 +15,7 @@ exports.run = async (client, message) => {
         prefix = client.config.prefix
         await database.set(`${message.guild.id}.prefix`, client.config.prefix);
     }
+    if (message.content.startsWith(clientMention)) prefix = clientMention;
     if (!message.content.startsWith(prefix)) return;
 
     // setup args
