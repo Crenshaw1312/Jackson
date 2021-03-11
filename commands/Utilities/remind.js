@@ -31,7 +31,6 @@ module.exports = {
                 for (let msg of messages) {
                     if (msg.content = `<@${message.author.id}>`) {
                         msg.delete();
-                        console.log(msg.content)
                     }
                 }
             });
