@@ -1,4 +1,7 @@
 Discord.js v12 bot template
+CRENSHAW: Hey, I used this template to start, but have since made many
+changes and added a lot to the the structure. I still give cresti to Fuse for the template,
+but there's a point when you add/edit so much it's more yours than theirs.
 
 Template fully made by FuseKInDaHEAD#5450
 
