@@ -1,6 +1,7 @@
 const { MessageEmbed, Guild } = require("discord.js");
 const databse = require("quick.db");
 const { createAccount } = require('../../funcs.js');
+const config = require("../../config/config.js");
 
 module.exports = {
     name: "jellybeangive",
@@ -8,7 +9,7 @@ module.exports = {
     usage: "jellybeangive <@user> [amount]",
     groups: ["jellybean"],
     DM: false,
-    cooldown: {type: "map", time: client.config.delayGive},
+    cooldown: {type: "map", time: config.delayGive},
     aliases: ["jbg", "jbgive"],
     run: async (client, message, args) => {
         const embed = new MessageEmbed()
