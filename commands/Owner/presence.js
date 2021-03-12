@@ -5,6 +5,8 @@ module.exports = {
     description: "Set the presence of Jackson",
     usage: "pres <title> <entry>",
     groups: ["owner"],
+    DM: true,
+    cooldown: {type: "map", time: 0},
     aliases: ["pres"],
     run: async (client, message, args) => {
 

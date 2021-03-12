@@ -7,6 +7,7 @@ module.exports = {
     usage: "birdfact",
     groups: ["fun", "animals"],
     DM: true,
+    cooldown: {type: "map", time: 2},
     aliases: ["bf"],
     run: async (client, message, args) => {
         let fact = (await fetch("https://some-random-api.ml/facts/bird").then(response => response.json())).fact;

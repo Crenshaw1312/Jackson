@@ -10,6 +10,8 @@ module.exports = {
     description: "Gets lyrics and album art to seach entry from youtube",
     usage: "lyrics <song name>",
     groups: ["fun", "music"],
+    DM: false,
+    cooldown: {type: "map", time: 15},
     aliases: ["lyr"],
     run: async (client, message, args) => {
 

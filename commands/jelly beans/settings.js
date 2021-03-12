@@ -8,6 +8,7 @@ module.exports = {
     usage: "jellybeansettings [maxgive|maxtake] <new ammount>",
     groups: ["jellybean"],
     DM: true,
+    cooldown: {type: "map", time: 3},
     aliases: ["jbsets", "jbsettings"],
     run: async (client, message, args) => {
         let maxGive = client.jellybean.maxGive

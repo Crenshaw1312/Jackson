@@ -8,6 +8,7 @@ module.exports = {
     usage: "waifu [seed]",
     groups: ["fun"],
     DM: true,
+    cooldown: {type: "map", time: 0},
     aliases: [],
     run: async (client, message, args) => {
         // make the seed generation

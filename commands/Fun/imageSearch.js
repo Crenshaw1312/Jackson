@@ -7,6 +7,7 @@ module.exports = {
     usage: "otter",
     groups: ["fun"],
     DM: true,
+    cooldown: {type: "map", time: 5},
     aliases: ["is", "imgsearch"],
     run: async (client, message, args) => {
         if (!args) client.err(message, "Image Search", "Please provide a search");

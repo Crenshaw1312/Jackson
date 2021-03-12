@@ -6,6 +6,7 @@ module.exports = {
     usage: "about",
     groups: ["information"],
     DM: true,
+    cooldown: {type: "map", time: 0},
     aliases: ["info"],
     run: async (client, message, args) => {
         const embed = new MessageEmbed()

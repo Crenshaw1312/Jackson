@@ -7,6 +7,7 @@ module.exports = {
     usage: "catfact",
     groups: ["fun"],
     DM: true,
+    cooldown: {type: "map", time: 3},
     aliases: [],
     run: async (client, message, args) => {
         let fox = (await fetch("https://randomfox.ca/floof/").then(response => response.json())).image;

@@ -9,6 +9,7 @@ module.exports = {
     usage: "animu [hug|pat|wink|face-palm]",
     groups: ["fun"],
     DM: false,
+    cooldown: {type: "map", time: 3},
     aliases: ["t"],
     run: async (client, message, args) => {
 

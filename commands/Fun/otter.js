@@ -7,6 +7,7 @@ module.exports = {
     usage: "otter",
     groups: ["fun"],
     DM: true,
+    cooldown: {type: "map", time: 0},
     aliases: ["otot"],
     run: async (client, message, args) => {
         gis('cute otter', logResults);

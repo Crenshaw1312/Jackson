@@ -9,6 +9,7 @@ module.exports = {
     usage: "songavailable <song search>",
     groups: ["fun"],
     DM: true,
+    cooldown: {type: "map", time: 10},
     aliases: ["songav", "sav"],
     run: async (client, message, args) => {
         const embed = new MessageEmbed()

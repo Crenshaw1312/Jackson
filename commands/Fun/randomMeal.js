@@ -7,6 +7,7 @@ module.exports = {
     usage: "randommeal",
     groups: ["fun"],
     DM: true,
+    cooldown: {type: "map", time: 5},
     aliases: ["randmeal", "randrecipe", "rr"],
     run: async (client, message, args) => {
         let meal = (await fetch("https://www.themealdb.com/api/json/v1/1/random.php").then(response => response.json())).meals[0];

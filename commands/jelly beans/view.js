@@ -8,6 +8,7 @@ module.exports = {
     usage: "jellybeanview [@user]",
     groups: ["jellybean"],
     DM: false,
+    cooldown: {type: "map", time: 3},
     aliases: ["jbv", "jbview", "jellybeanview", "jbs", "jbeans"],
     run: async (client, message, args) => {
         const embed = new MessageEmbed()

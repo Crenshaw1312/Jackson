@@ -6,6 +6,8 @@ module.exports = {
     description: "Evaluate entered code",
     usage: "eval <code>",
     groups: ["owner"],
+    DM: true,
+    cooldown: {type: "map", time: 0},
     aliases: ["ev"],
     run: async (client, message, args) => {
 

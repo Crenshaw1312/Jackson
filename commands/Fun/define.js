@@ -8,6 +8,7 @@ module.exports = {
     usage: "define <word>",
     groups: ["fun"],
     DM: false,
+    cooldown: {type: "map", time: 3},
     aliases: ["def", "urban", "ud"],
     run: async (client, message, args) => {
         const embed = new MessageEmbed()

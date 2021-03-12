@@ -6,6 +6,8 @@ module.exports = {
     description: "Show the websocket ping in milliseconds",
     usage: "youtubesearch <search>",
     groups: ["fun"],
+    DM: true,
+    cooldown: {type: "map", time: 5},
     aliases: ["yts"],
     run: async (client, message, args) => {
 

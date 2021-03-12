@@ -8,6 +8,7 @@ module.exports = {
     usage: "status",
     groups: ["information"],
     DM: true,
+    cooldown: {type: "map", time: 0},
     aliases: ["stats"],
     run: async (client, message, args) => {
         const embed = new MessageEmbed()
@@ -16,7 +17,8 @@ module.exports = {
         .addFields(
             {name: "Uptime", value: `${ms(client.uptime)}`,inline: true},
             {name: "Database", value: `quick.db ${database.version}`, inline: true},
-            {name: "Totals", value: `Users: ${client.users.cache.size}\nChannels: ${client.channels.cache.size}\nGuilds: ${client.guilds.cache.size}`, inline: false}
+            {name: "Totals", value: `Users: ${client.users.cache.size}\nChannels: ${client.channels.cache.size}\nGuilds: ${client.guilds.cache.size}`, inline: false},
+            {name: `Cake Day :cake:`, value: (new Date(client.user.createdTimestamp)).toDateString(), inline: false}
         );
         return message.reply(embed);
     }

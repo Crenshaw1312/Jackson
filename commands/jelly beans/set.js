@@ -8,6 +8,7 @@ module.exports = {
     usage: "jellybeanset <@user> <amount>",
     groups: ["jellybean"],
     DM: false,
+    cooldown: {type: "map", time: 3},
     aliases: ["jbset", "jellybeanreset", "jbreset"],
     run: async (client, message, args) => {
         const embed = new MessageEmbed()

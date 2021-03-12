@@ -1,7 +1,16 @@
 const database = require("quick.db");
 const chalk = require("chalk");
+const mongo = require("../config/mongo.js")
 
 exports.run = async (client, guild, message) => {
+    // mongo db
+    await mongo().then(mongoose => {
+        try {
+            console.log(chalk.blueBright('MongoDB conected'));
+        } finally {
+            mongoose.connection.close();
+        }
+    });
 
     // jelly beans
     for (let guild of client.guilds.cache) {

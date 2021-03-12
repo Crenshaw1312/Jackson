@@ -8,6 +8,7 @@ module.exports = {
     usage: "prefix [new prefix|reset]",
     groups: ["utilites"],
     DM: false,
+    cooldown: {type: "map", time: 0},
     aliases: ["setprefix"],
     run: async (client, message, args) => {
 

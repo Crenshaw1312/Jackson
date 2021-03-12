@@ -8,6 +8,7 @@ module.exports = {
     usage: "remind <duration> [remind message]",
     groups: ["information"],
     DM: false,
+    cooldown: {type: "map", time: 0},
     aliases: ["rmnd"],
     run: async (client, message, args) => {
         const embed = new MessageEmbed()

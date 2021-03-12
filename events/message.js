@@ -23,30 +23,61 @@ exports.run = async (client, message) => {
     const cmd = args.shift().toLowerCase(); 
     if (cmd.length === 0) return;
     
-    // Configurable Jelly bean data :3
+    // Jelly bean data :3
     client.jellybean = await database.get(`${message.guild.id}.jellybeandata`);
 
+
+    // does the command exsist?
     let command = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
     if (!command) return message.reply("Command not found");
-    else{ 
-        message.channel.startTyping();
-        try {
-            // errors and overrides
-            if (command.DM === false && !message.guild) return client.err(message, "DMs", "This command cannot be ran in DMs");
-            if (command.DM === true && !message.guild) {
-                console.log(`Ran (DM) ${command.name} \[${args.join(" ")}\]- ${message.author.username}#${message.author.discriminator} \(${message.author.id}\)`);
-                command.run(client, message, args);
-                return message.channel.stopTyping();
-            }
-            if (command.groups[0] == "nsfw" && !message.channel.nsfw) return client.err(message, "NSFW", "This is not a NSFW channel");
-            if (command.groups[0] == "owner" && message.author.id !== '766385575530856458') return client.err(message, "Crenshaw Only", "This command can only be run by the bot owner Crenshaw#1312");
+        
+    // Cool down, by user, not guild sice.... it makes sense);
+    if (command.cooldown.time !== 0){
+        // get the commands the user has cooldown on
+        let commandsWithCooldown = client.cooldowns.get(`${message.author.id}_cooldowns`);
+        if (!commandsWithCooldown) {
+            client.cooldowns.set(`${message.author.id}_cooldowns`, []);
+            commandsWithCooldown = [];
+        }
+        // the command name is there, so tell user they're on cooldown
+        if (commandsWithCooldown.indexOf(command.name) > -1) return client.err(message, "Cooldown", "You're currently on cooldown for this command");
 
-            // no overrides or nsfw filters stopped the command, run normally
-            console.log(`Ran (guild) ${command.name} \[${args.join(" ")}\]- ${message.author.username}#${message.author.discriminator} \(${message.author.id}\)`);
+        // add the command to their cooldown list otherwise
+        if (command.cooldown.type == "map"){
+            commandsWithCooldown.push(command.name)
+            client.cooldowns.set(`${message.author.id}_cooldowns`, commandsWithCooldown);
+            // delete after cooldown is up 
+                setTimeout(async function (){
+                    let removed = commandsWithCooldown.filter(remove => remove !== command.name);
+                    client.cooldowns.set(`${message.author.id}_cooldowns`, removed);
+                }, (1000 * command.cooldown.time));
+            // mongoDB cooldown, works even after restart
+        } else {
+            return
+        }
+    }
+
+    message.channel.startTyping();
+    try {
+
+        // errors and overrides, the running the command
+        if (command.DM === false && !message.guild) return client.err(message, "DMs", "This command cannot be ran in DMs");
+        if (command.DM === true && !message.guild) {
+            console.log(`Ran (DM) ${command.name} \[${args.join(" ")}\]- ${message.author.username}#${message.author.discriminator} \(${message.author.id}\)`);
             command.run(client, message, args);
             return message.channel.stopTyping();
-        } catch (err) {
-            console.log(err);
         }
+        if (command.groups[0] == "nsfw" && !message.channel.nsfw) return client.err(message, "NSFW", "This is not a NSFW channel");
+        if (command.groups[0] == "owner" && message.author.id !== '766385575530856458') return client.err(message, "Crenshaw Only", "This command can only be run by the bot owner Crenshaw#1312");
+
+        // no overrides or nsfw filters stopped the command, run normally
+        console.log(`Ran (guild) ${command.name} \[${args.join(" ")}\]- ${message.author.username}#${message.author.discriminator} \(${message.author.id}\)`);
+        command.run(client, message, args);
+
+        // stop typing
+        return await message.channel.stopTyping();
+
+    } catch (err) {
+        console.log(err);
     }
 }

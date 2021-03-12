@@ -6,6 +6,8 @@ module.exports = {
     description: "Gets a random joke from reddit",
     usage: "showerthought",
     groups: ["fun"],
+    DM: false,
+    cooldown: {type: "map", time: 3},
     aliases: ["st"],
     run: async (client, message, args) => {
         const embed = new MessageEmbed();

@@ -7,6 +7,7 @@ module.exports = {
     usage: "pandafact",
     groups: ["fun", "animals"],
     DM: true,
+    cooldown: {type: "map", time: 2},
     aliases: ["pf"],
     run: async (client, message, args) => {
         let fact = (await fetch("https://some-random-api.ml/facts/panda").then(response => response.json())).fact;

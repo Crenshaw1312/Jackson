@@ -8,6 +8,7 @@ module.exports = {
     usage: "wouldyourather [pg|pg13|r]",
     groups: ["fun"],
     DM: false,
+    cooldown: {type: "map", time: 0},
     aliases: ["wyr"],
     run: async (client, message, args) => {
 

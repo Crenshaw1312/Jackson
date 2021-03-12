@@ -6,6 +6,8 @@ module.exports = {
     description: "Gets a random meme from reddit",
     usage: "meme",
     groups: ["fun"],
+    DM: false,
+    cooldown: {type: "map", time: 0},
     aliases: ["m"],
     run: async (client, message, args) => {
         const subReddits = ["dankmeme", "meme", "me_irl"];

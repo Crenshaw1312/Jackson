@@ -6,6 +6,7 @@ module.exports = {
     usage: "help",
     groups: ["information"],
     DM: true,
+    cooldown: {type: "map", time: 0},
     aliases: ["h"],
     run: async (client, message, args) => {
         //set-up

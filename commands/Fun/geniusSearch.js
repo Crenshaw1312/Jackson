@@ -7,6 +7,7 @@ module.exports = {
     usage: "songsearch <song name>",
     groups: ["fun", "music"],
     DM: false,
+    cooldown: {type: "map", time: 5},
     aliases: ["ss"],
     run: async (client, message, args) => {
         const options = {

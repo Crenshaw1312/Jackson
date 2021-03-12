@@ -5,6 +5,8 @@ module.exports = {
     description: "manage the guilds the bot is on",
     usage: "guildsmanage list\nguildsmanage leave [guild id]",
     groups: ["owner"],
+    DM: true,
+    cooldown: {type: "map", time: 0},
     aliases: ["mg"],
     run: async (client, message, args) => {
 

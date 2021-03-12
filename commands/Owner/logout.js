@@ -6,6 +6,8 @@ module.exports = {
     description: "Makes Jackson logout",
     usage: "logout",
     groups: ["owner"],
+    DM: true,
+    cooldown: {type: "map", time: 0},
     aliases: ["shutdown", "leave", "off"],
     run: async (client, message, args) => {
 

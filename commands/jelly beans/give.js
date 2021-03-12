@@ -8,6 +8,7 @@ module.exports = {
     usage: "jellybeangive <@user> [amount]",
     groups: ["jellybean"],
     DM: false,
+    cooldown: {type: "map", time: client.config.delayGive},
     aliases: ["jbg", "jbgive"],
     run: async (client, message, args) => {
         const embed = new MessageEmbed()

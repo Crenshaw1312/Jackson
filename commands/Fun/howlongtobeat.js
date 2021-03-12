@@ -7,6 +7,7 @@ module.exports = {
     usage: "howlongtobeat <game name>",
     groups: ["fun"],
     DM: true,
+    cooldown: {type: "map", time: 3},
     aliases: ["hltb"],
     run: async (client, message, args) => {
         const hltbService = new hltb.HowLongToBeatService();

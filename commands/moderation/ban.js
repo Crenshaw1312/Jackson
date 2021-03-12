@@ -6,6 +6,7 @@ module.exports = {
     usage: "ban <user>",
     groups: ["moderation"],
     DM: false,
+    cooldown: {type: "map", time: 0},
     aliases: [],
     run: async (client, message, args) => {
     
