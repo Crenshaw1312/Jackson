@@ -5,7 +5,7 @@ const querystring = require('querystring');
 module.exports = {
     name: "define",
     description: "Gets definition from urban dictionary",
-    usage: "define",
+    usage: "define <word>",
     groups: ["fun"],
     DM: false,
     aliases: ["def", "urban", "ud"],
