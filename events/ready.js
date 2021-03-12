@@ -18,14 +18,33 @@ exports.run = async (client, guild, message) => {
     }
 
     // presence
-    client.user.setPresence({
-        status: 'online',
-        activity: {
-            name: "jack help",
-            type: "PLAYING"
-        }
-    });
-    console.log(chalk.yellow("Set Presence"));
+    let possibleDisplay = ["fox", "lyrics", "truth", "define"];
+    let random = possibleDisplay[Math.floor(Math.random() * possibleDisplay.length)];
+    possibleDisplay = await client.commands.get(random);
+    let statuses = [
+        {name: "jack help", type: "PLAYING"},
+        {name: `${client.guilds.cache.size} guilds`, type: "WATCHING"},
+        {name: "jack help", type: "PLAYING"},
+        {name: `jack ${possibleDisplay.usage}`, type: "PLAYING"}
+    ];
+
+    let i = 0;
+    client.setInterval(() => {
+         let status = statuses[i];
+         if(!status){
+             status = statuses[0];
+             i = 0;
+         }
+         client.user.setPresence({
+            status: 'online',
+            activity: {
+                name: status.name,
+                type: status.type
+            }
+        });
+         i++;
+    }, 60000);
+    console.log(chalk.yellow("Presence loop started"));
 
     console.log("Jackson is online");
 }
