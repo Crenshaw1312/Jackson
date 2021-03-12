@@ -18,7 +18,7 @@ module.exports = {
             let image = results[random].url
 
             const embed = new MessageEmbed()
-            .setTitle('Otter')
+            .setTitle('Image Search')
             .setImage(image)
             .setColor(0x4B0082);
             return message.reply(embed);
