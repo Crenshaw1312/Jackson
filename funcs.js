@@ -1,4 +1,5 @@
 const database = require("quick.db");
+const got = require('got');
 
 // choose, if in args use args
 exports.choose = async (args, options, not) => {
@@ -27,6 +28,21 @@ exports.fetchMessages = async function (channel, amount) {
     });
     return messagesFormatted;
 }
+
+// Reddit
+exports.getRedditPost = async (subReddits) => {
+    try {
+        const random = subReddits[Math.floor(Math.random() * subReddits.length)];
+        let res = "";
+        let response = await got(`https://www.reddit.com/r/${random}/random/.json`)
+        const [list] = JSON.parse(response.body);
+        const [post] = list.data.children;
+        return post.data
+    } catch (error) {
+        return
+    }
+}
+
 
 // Form submit (for image host), yoinked from StackOverflow here: https://stackoverflow.com/questions/133925/javascript-post-request-like-a-form-submit
 function post_to_url(path, params, method) {
