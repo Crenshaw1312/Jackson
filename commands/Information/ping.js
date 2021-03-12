@@ -1,4 +1,5 @@
 const { MessageEmbed } = require("discord.js");
+const { fetchMessages } = require("../../funcs.js");
 
 module.exports = {
     name: "ping",
@@ -10,9 +11,12 @@ module.exports = {
     aliases: ["pong", "p"],
     run: async (client, message, args) => {
         const embed = new MessageEmbed()
-        .setTitle('Ping')
-        .setColor(0x4B0082)
-        .setDescription(`Websocket ${client.ws.ping}ms`);
-        return message.reply(embed);
+        .setTitle("Ping :ping_pong:")
+        .setColor(0x4B0082);
+    await message.reply(embed);
+    
+    let pingMessage = (await fetchMessages(message.channel, 1))[0];
+    pingMessage.embeds[0].description = `Edit message: ${message.createdTimestamp- pingMessage.createdTimestamp}ms\nWebsocket is : ${Math.round(client.ws.ping)}ms`;
+    pingMessage.edit({embed: pingMessage.embeds[0]});
     }
 }
