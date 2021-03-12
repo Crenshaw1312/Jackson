@@ -9,7 +9,7 @@ module.exports = {
     DM: true,
     aliases: ["otot"],
     run: async (client, message, args) => {
-        gis('otter', logResults);
+        gis('cute otter', logResults);
         async function logResults(error, results){
             if (error)return client.err(message, "Otter", "No otters found");
 
