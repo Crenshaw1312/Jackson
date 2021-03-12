@@ -5,7 +5,7 @@ module.exports = {
     name: "howlongtobeat",
     description: "Show the websocket ping in milliseconds",
     usage: "howlongtobeat <game name>",
-    groups: ["information", "fun"],
+    groups: ["fun"],
     DM: true,
     aliases: ["hltb"],
     run: async (client, message, args) => {

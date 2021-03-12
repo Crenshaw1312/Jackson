@@ -7,7 +7,7 @@ module.exports = {
     name: "songavailable",
     description: "Show where a song is available",
     usage: "songavailable <song search>",
-    groups: ["information"],
+    groups: ["fun"],
     DM: true,
     aliases: ["songav", "sav"],
     run: async (client, message, args) => {
