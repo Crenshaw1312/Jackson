@@ -21,7 +21,6 @@ exports.run = async (client, message) => {
     // setup args
     args = message.content.slice(prefix.length).trim().split(/ +/g);
     const cmd = args.shift().toLowerCase(); 
-    if (cmd.length === 0) return;
     
     // Jelly bean data :3
     client.jellybean = await database.get(`${message.guild.id}.jellybeandata`);
