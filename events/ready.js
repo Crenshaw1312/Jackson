@@ -1,8 +1,9 @@
 const database = require("quick.db");
 const chalk = require("chalk");
-const mongo = require("../config/mongo.js")
+const mongo = require("../config/mongo.js");
+const { prefix } = require("../config/config.js");
 
-exports.run = async (client, guild, message) => {
+exports.run = async (client) => {
     // mongo db
     await mongo().then(mongoose => {
         try {
@@ -31,8 +32,9 @@ exports.run = async (client, guild, message) => {
     let random = possibleDisplay[Math.floor(Math.random() * possibleDisplay.length)];
     possibleDisplay = await client.commands.get(random);
     let statuses = [
-        {name: "jack help", type: "PLAYING"},
-        {name: `${client.users.cache.size} guilds`, type: "WATCHING"},
+        {name: `@${client.user.username}`, type: "PLAYING"},
+        {name: `${client.users.cache.size} users`, type: "WATCHING"},
+        {name: `@${client.user.username} ${possibleDisplay.usage}`, type: "PLAYING"}
     ];
 
     let i = 0;
