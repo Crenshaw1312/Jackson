@@ -32,7 +32,7 @@ exports.run = async (client, guild, message) => {
     possibleDisplay = await client.commands.get(random);
     let statuses = [
         {name: "jack help", type: "PLAYING"},
-        {name: `${client.users.cache.size} guilds`, type: "WATCHING"},
+        {name: `${client.guilds.cache.size} guilds`, type: "WATCHING"},
     ];
 
     let i = 0;
