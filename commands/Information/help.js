@@ -60,5 +60,6 @@ module.exports = {
             if ( nsfw && !message.channel.nsfw) return client.err(message, "NSFW", "This is not a NSFW channel");
             return message.reply(embed);
         }
+        return message.reply(embed);
     }
 }
