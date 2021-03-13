@@ -11,9 +11,9 @@ module.exports = {
     cooldown: {type: "map", time: 3},
     aliases: ["jbsets", "jbsettings"],
     run: async (client, message, args) => {
-        let maxGive = client.jellybean.maxGive
-        let maxTake = client.jellybean.maxTake
+        const jellyBeanData = client.config.jellybeans
         const embed = new MessageEmbed()
+        .setTitle("Jelly Bean Settings")
         .setColor(0x4B0082);
 
         if (!args.length) {
@@ -25,21 +25,22 @@ module.exports = {
         // require perms
         if (!message.member.permissions.has('MANAGE_GUILD') || !message.member.permissions.has('ADMINISTRATOR')) return client.err(message, "Jelly Bean Settings", 'You do not have permisson to change jelly bean settings');
 
-        function num(args, max) {
-            let amount = (args[1] || max);
-            return Number(amount.match(/^[0-9]+$/gm));
+        let sets = ["maxgive", "maxtake", "reset"];
+        let set = sets.find(set => set == args[0]);
+
+        if (!set) return client.err(message, "Jelly Bean Settings", `Valid settings you can change are:\n\`\`\`\n${sets.join("\n")}\n\`\`\``);
+
+        if (args[0] == "reset") {
+            await databse.delete(`${message.guild.id}.jellybeandata.${set}`);
+            embed.setDescription("Reset all jelly bean data");
+            return message.reply(embed)
         }
 
-        if (args[0] == "maxgive") {
-            databse.set(`${messge.guild.id}.jellybeandata.maxGive`, num(args, maxGive));
-            embed.setDescription(`Set the maximum give amount to \`${num(args, maxGive)}\``);
-        } else if (args[0] == "maxtake") {
-            databse.set(`${message.guild.id}.jellybeandata.maxTake`, num(args, maxTake));
-            embed.setDescription(`Set the maximum take amount to \`${num(args, maxTake)}\``);
-        } else {
-            return client.err(message, "Jelly Bean Settings", "Valid settings you can change are maxgive and maxtake");
-        }
+        let entry = (args[1] || jellyBeanData[set]);
+        entry = Number(entry.match(/^[0-9]+$/igm));
+        await databse.set(`${message.guild.id}.jellybeandata.${set}`, entry);
 
+        embed.setDescription(`Set \`${set}\` to \`${entry}\``);
         return message.reply(embed);
     }
 }

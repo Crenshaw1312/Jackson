@@ -15,7 +15,7 @@ module.exports = {
         const embed = new MessageEmbed()
         .setColor(0x4B0082);
         const user = message.mentions.users.first();
-        const maxGive = client.jellybean.maxGive
+        const maxGive = client.jellybean.maxgive
         // errors
         if (!user ) return client.err(message, "Jelly Bean Give", "Provide a user to give jelly bean(s) to");
         if (user == message.author) return client.err(message, "Jelly Bean Give", "You cannot give yourself jellybeans");
