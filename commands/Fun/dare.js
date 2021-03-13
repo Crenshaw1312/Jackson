@@ -8,7 +8,7 @@ module.exports = {
     usage: "dare [pg|pg13|r] [irl|d]",
     groups: ["fun"],
     DM: false,
-    cooldown: {type: "map", time: 0},
+    cooldown: {type: "map", time: 5},
     aliases: ["d"],
     run: async (client, message, args) => {
         // setting rating

@@ -9,7 +9,7 @@ module.exports = {
     usage: "truth [pg|pg13|r]",
     groups: ["fun"],
     DM: false,
-    cooldown: {type: "map", time: 0},
+    cooldown: {type: "map", time: 5},
     aliases: ["t"],
     run: async (client, message, args) => {
 
