@@ -2,13 +2,13 @@ const { MessageEmbed } = require("discord.js");
 const { searchSong } = require('genius-lyrics-api');
 
 module.exports = {
-    name: "songsearch",
+    name: "geniussearch",
     description: "Searches Genius Lyrics for  a song and links them.",
     usage: "songsearch <song name>",
     groups: ["fun", "music"],
     DM: false,
     cooldown: {type: "map", time: 5},
-    aliases: ["ss"],
+    aliases: ["gs"],
     run: async (client, message, args) => {
         const options = {
             apiKey: client.config.geniusToken,
