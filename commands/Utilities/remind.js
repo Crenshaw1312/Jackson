@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const ms = require("ms");
-const { fetchMessages } = require("../../funcs");
+const { fetchMessages } = require("../../config/funcs");
 
 module.exports = {
     name: "remind",

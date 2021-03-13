@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { getRedditPost } = require("../../funcs.js");
+const { getRedditPost } = require("../../config/funcs.js");
 
 module.exports = {
     name: "showerthought",

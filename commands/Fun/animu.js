@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const fetch = require('node-fetch');
-const { choose } = require('../../funcs.js');
+const { choose } = require('../../config/funcs.js');
 
 
 module.exports = {

@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const fetch = require('node-fetch');
 const NSFW = require("discord-nsfw");
-const { choose } = require('../../funcs.js');
+const { choose } = require('../../config/funcs.js');
 const nsfw = new NSFW();
 
 module.exports = {

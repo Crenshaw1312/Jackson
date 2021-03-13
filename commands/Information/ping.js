@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { fetchMessages } = require("../../funcs.js");
+const { fetchMessages } = require("../../config/funcs.js");
 
 module.exports = {
     name: "ping",

@@ -1,5 +1,4 @@
-const { MessageEmbed, Permissions } = require("discord.js");
-const { inspect } = require('util');
+const { MessageEmbed } = require("discord.js");
 
 module.exports = {
     name: "logout",

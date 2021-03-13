@@ -1,6 +1,6 @@
 const { MessageEmbed, Guild } = require("discord.js");
+const { createAccount } = require('../../config/funcs.js');
 const databse = require("quick.db");
-const funcs = require('../../funcs.js');
 
 module.exports = {
     name: "jellybeanset",
