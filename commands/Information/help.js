@@ -1,4 +1,5 @@
 const { MessageEmbed } = require("discord.js");
+const { findGroup } = require("../../config/funcs.js");
 
 module.exports = {
     name: "help",
@@ -15,15 +16,14 @@ module.exports = {
         .setColor(0x4B0082)
         .setFooter("prefix is 'jack'");
         let desc = "";
-        let groups = {"information":[], "jellybean": [], "animals": [], "utilites": [], "nsfw": [], "fun": [], "owner": [], "moderation": [], "music": []}; 
-        for (let c of client.commands) {
-            for (let g of c[1].groups) {
-                groups[g].push(c[0]);
-            }
+        let nsfw = false;
+        let groups = [];
+        for (let group of client.groups.keys()) {
+            groups.push(group)
         }
 
         // default help embed
-        if (!args[0]) {
+        if (!args) {
             embed.setDescription(desc);
             embed.addFields(
                 { name: 'Information', value: "`help information`", inline: true },
@@ -39,26 +39,26 @@ module.exports = {
         // Command specific
         } else {
 
-            let command = client.aliases.get(args[0]);
-            command = client.commands.get(command || args[0]);
-
+            let command = client.commands.get(args[0]) || client.commands.get(client.aliases.get(args[0]));
             if (command) {
+                // indiviual command
+                if ( command.groups.indexOf("nsfw") > -1) nsfw = true;
                 embed.setTitle(`Help - ${command.name}`);
                 embed.setDescription("```css\n" + `\#Aliases \[${command.aliases.join(", ")}\]\n\#Usage \[${command.usage}\]\n\#Description \[${command.description}\]` + "\n```");
             } else {
                 // Groups
-                if (!groups[args[0]]) return;
-                let commands = groups[(args[0])];
-                for (let c of commands) {
-                    command = client.commands.get(c);
+                let group = groups.find(group => group.toLowerCase() == args[0])
+                if (!group) return;
+                for (let command of client.groups.get(group)) {
                     desc += `**${command.name}**, `
                 }
+                if (group == "nsfw") nsfw = true
                 desc = "Use `jack help <command name>` for more on that command\n" + desc.slice(0, (desc.length - 2));
-                embed.setTitle(`Help - ${args[0]}`);
+                embed.setTitle(`Help - ${group}`);
                 embed.setDescription(desc);
             }
-            if ((command.groups[0] == "nsfw" || args[0] == "nsfw") && !message.channel.nsfw) return client.err(message, "NSFW", "This is not a NSFW channel");
+            if ( nsfw && !message.channel.nsfw) return client.err(message, "NSFW", "This is not a NSFW channel");
+            return message.reply(embed);
         }
-        return message.reply(embed);
     }
 }
