@@ -2,3 +2,4 @@ node_modules
 jacksonDB.db
 config/config.js
 json.sqlite
+config/just incase
