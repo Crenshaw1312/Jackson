@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 module.exports = {
     name: "fox",
     description: "Gives a random fox",
-    usage: "catfact",
+    usage: "fox",
     groups: ["fun"],
     DM: true,
     cooldown: {type: "map", time: 3},

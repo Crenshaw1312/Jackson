@@ -1,5 +1,4 @@
 const { MessageAttachment } = require("discord.js");
-const fs = require("fs");
 const Waifu = require("waifulabs");
 
 module.exports = {

@@ -23,7 +23,7 @@ module.exports = {
         }
 
         // default help embed
-        if (!args) {
+        if (!args[0]) {
             embed.setDescription(desc);
             embed.addFields(
                 { name: 'Information', value: "`help information`", inline: true },
