@@ -5,7 +5,6 @@ const { readdirSync } = require("fs");
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 client.groups = new Map();
-client.DM = new Discord.Collection();
 client.cooldowns = new Map()
 
 client.config = require("./config/config.js");
