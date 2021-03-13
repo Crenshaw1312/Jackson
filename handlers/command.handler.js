@@ -10,7 +10,22 @@ module.exports = async client => {
             else {
                 client.commands.set(command.name, command);
                 console.log(chalk.greenBright(`Loaded ${command.name}`));
-                if (command.aliases && Array.isArray(command.aliases)) command.aliases.forEach(alias => client.aliases.set(alias, command.name));
+
+                // making the aliases collection
+                if (command.aliases && Array.isArray(command.aliases)) {
+                    command.aliases.forEach(alias => client.aliases.set(alias, command.name));
+                }
+
+                // making the groups map
+                if (command.groups && Array.isArray(command.groups)) {
+                    for (let group of command.groups) {
+                        if (!client.groups.get(group)) {
+                            client.groups.set(group, [command]);
+                            continue
+                        }
+                        client.groups.get(group).push(command);
+                    };
+                }
             }
         });
     });
