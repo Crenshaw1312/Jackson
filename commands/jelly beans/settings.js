@@ -16,12 +16,6 @@ module.exports = {
         .setTitle("Jelly Bean Settings")
         .setColor(0x4B0082);
 
-        if (!args.length) {
-            embed.setTitle("Jelly Bean Settings");
-            embed.setDescription(`Max give: ${maxGive}\nMax take: ${maxTake}`);
-            return message.reply(embed);
-        }
-
         // require perms
         if (!message.member.permissions.has('MANAGE_GUILD') || !message.member.permissions.has('ADMINISTRATOR')) return client.err(message, "Jelly Bean Settings", 'You do not have permisson to change jelly bean settings');
 
