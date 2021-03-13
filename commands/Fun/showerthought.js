@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const got = require('got');
+const { getRedditPost } = require("../../funcs.js");
 
 module.exports = {
     name: "showerthought",
@@ -10,22 +10,16 @@ module.exports = {
     cooldown: {type: "map", time: 3},
     aliases: ["st"],
     run: async (client, message, args) => {
-        const embed = new MessageEmbed();
-        got(`https://www.reddit.com/r/Showerthoughts/random/.json`)
-            .then(response => {
-                const [list] = JSON.parse(response.body);
-                const [post] = list.data.children;
+        let post = await getRedditPost(["Showerthoughts"]);
+        if (!post) return client.err(message, "Shower Thought", "No shower thought was returned");
 
-                const permalink = post.data.permalink;
-                const stUrl = `https://reddit.com${permalink}`;
+        const embed = new MessageEmbed()
+        .setTitle(post.title)
+        .setURL(`https://reddit.com${post.permalink}`)
+        .setColor(0x4B0082)
+        .setDescription(`${post.selftext}`)
+        .setFooter(`👍 ${post.ups} - ${post.subreddit_name_prefixed}`);
     
-                embed.setTitle(post.data.title);
-                embed.setURL(`${stUrl}`);
-                embed.setColor(0x4B0082);
-                embed.setDescription(`||${post.data.selftext}||`);
-                embed.setFooter(`👍 ${post.data.ups} - ${post.data.subreddit_name_prefixed}`);
-    
-                return message.reply(embed);
-            });
+        return message.reply(embed);
     }
 }
