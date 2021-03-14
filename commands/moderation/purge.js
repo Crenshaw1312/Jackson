@@ -11,17 +11,17 @@ module.exports = {
     aliases: ["clean", "wipe"],
     run: async (client, message, args) => {
         if (!message.member.permissions.has('MANAGE_MESSAGES')) return client.err(message, "Purge", 'You do not have permissons to purge');
-        if (!args) return client.err(message, "Purge", "Please provide an amount of messages to delete");
+        if (!args[0]) return client.err(message, "Purge", "Please provide an amount of messages to delete");
         
         // Fine the number
-        let amount = (args[0] || "1");
-        amount = Number(amount.match(/^[0-9]+$/gm));
-        if (amount < 2 || amount > 100) client.err(message, "Purge", "Amount must be from 2 to 100");
+        let amount = Number(args[0].match(/^[0-9]+$/gm));
+        if (amount < 2 || amount > 100) return client.err(message, "Purge", "Amount must be from 2 to 100");
 
-        let messages = await fetchMessages(message.channel, amount);
-        for (let msg of messages) {
-            msg.delete();
-        }
+        let targetUser = message.mentions.users.first();
+        let messages = await fetchMessages(message.channel, 100);
+        if (targetUser) messages = messages.filter(msg => msg.author.id == targetUser.id);
+        message.channel.bulkDelete(messages);
+
         const embed = new MessageEmbed()
         .setColor(0x4B0082)
         .setTitle("Purge")

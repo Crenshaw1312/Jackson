@@ -28,13 +28,10 @@ exports.run = async (client) => {
     }
 
     // presence
-    let possibleDisplay = ["fox", "lyrics", "truth", "define"];
-    let random = possibleDisplay[Math.floor(Math.random() * possibleDisplay.length)];
-    possibleDisplay = await client.commands.get(random);
     let statuses = [
-        {name: `@${client.user.username}`, type: "PLAYING"},
+        {name: `@${client.user.username} help`, type: "PLAYING"},
         {name: `${client.users.cache.size} users`, type: "WATCHING"},
-        {name: `@${client.user.username} ${possibleDisplay.usage}`, type: "PLAYING"}
+        {name: `@${client.user.username} purge <amount> [@user]`, type: "PLAYING"}
     ];
 
     let i = 0;
