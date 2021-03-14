@@ -26,7 +26,7 @@ module.exports = {
         const embed = new MessageEmbed()
         .setTitle("Prefix")
         .setColor(0x4B0082)
-        .setDescription(`Prefix has been set to: ${await database.get(`prefix_${message.guild.id}`) || client.config.prefix}`);
+        .setDescription(`Prefix has been set to: ${await database.get(`${message.guild.id}.prefix`) || client.config.prefix}`);
         return message.reply(embed);
     }
 }

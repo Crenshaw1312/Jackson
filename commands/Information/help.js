@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const { findGroup } = require("../../config/funcs.js");
+const guildsmanage = require("../Owner/guildsmanage.js");
 
 module.exports = {
     name: "help",
@@ -14,7 +15,7 @@ module.exports = {
         const embed = new MessageEmbed()
         .setTitle('Do you have any purple jelly beans?')
         .setColor(0x4B0082)
-        .setFooter("prefix is 'jack'");
+        .setFooter(`Prefix is ${client.prefix}`);
         let desc = "";
         let nsfw = false;
         let groups = [];

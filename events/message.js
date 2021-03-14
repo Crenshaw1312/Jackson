@@ -15,6 +15,7 @@ exports.run = async (client, message) => {
         prefix = client.config.prefix
         await database.set(`${message.guild.id}.prefix`, client.config.prefix);
     }
+    client.prefix = prefix;
     if (message.content.startsWith(clientMention)) prefix = clientMention;
     if (!message.content.startsWith(prefix)) return;
 
