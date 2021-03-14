@@ -12,8 +12,8 @@ module.exports = {
     run: async (client, message, args) => {
 
         let parse = await flagParse([
-            {name: "good", args: [String]},
-            {name: "bad", args: [String]}
+            {name: "good", args: ["string", "boolean"]},
+            {name: "bad", args: ["string", "number"]}
         ], args.join(" "));
 
         const embed = new MessageEmbed()

@@ -3,7 +3,6 @@ exports.flagParse = async (flags, string) => {
     let located = string.match(/("[^"]*")|([^"\s]*)/ig).filter(str => str !== '');
     const map = new Map();
     let currentFlag = "";
-    console.log(located);
     // combine two that are next to eachother
     for (let current of located) {
         // make and set currentFlag
@@ -13,10 +12,29 @@ exports.flagParse = async (flags, string) => {
                    map.set(flag.name, []);
                    currentFlag = current.slice(1);
                }
-           };
-        // add to an exsisting flag
-        } else if (currentFlag) {
-            map.get(currentFlag).push(current)
+           }
+
+        // add to an exsisting flag (ignoring noFlag)
+        } else if (currentFlag && currentFlag !== "noFlag") {
+            let lastMapIndex = map.get(currentFlag).length;
+            console.log(lastMapIndex);
+            let flagArgs = "";
+            for (let flag of flags) {
+                if (flag.name == currentFlag) flagArgs = flag.args;
+            }
+    
+            // change the type
+            if (current.match(/^t(ruth)?|f(alse)?|1|0$/ig)) {
+                current = Boolean(current);
+            } else if (current.match(/^\d+$/g)) {
+                current = Number(current);
+            }
+    
+            // if valid type for arg, add to map
+            if (typeof current === flagArgs[lastMapIndex]) {
+                map.get(currentFlag).push(current)
+            }
+
         // There was no flag defiend to add to
         } else {
             if (!map.get("noFlag")) {
