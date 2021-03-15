@@ -10,7 +10,7 @@ module.exports = {
     groups: ["fun"],
     DM: false,
     cooldown: {type: "map", time: 3},
-    aliases: ["t"],
+    aliases: ["ani"],
     run: async (client, message, args) => {
 
         // setting rating

@@ -9,8 +9,6 @@ The big imaginary cat's name is Crenshaw. Crenshaw is always there for Jackson a
 
 Their favourite candies are purple jelly beans, so I made a simple jelly bean system to give other people jelly beans
 
-
-
 ## Credits
 You'll see there's a lot, and I like giveing credit to those who help me since it means a lot to me when someone spends their time helping you or makin your day better
 - **WaterNinja101#2093**
@@ -51,7 +49,7 @@ There are commands that only the owner of the bot can run, Crenshaw#1312, and th
 1. Create a discord bot application
 2. Clone, or download, this repo
 3. Make and enter data into config folder and file (more below) 
-4. Install all dependancies
+4. Install all dependancies `npm i`
 5. run `node .`
 
 ### Making the Config
@@ -81,7 +79,19 @@ module.exports = {
 > `prefix` is required, but you can change the prefix with the `prefix` command (perguild)
 
 ## Adding commands
-### Example (ping)
+### Example Command object
+```js
+{
+  name: 'animu',
+  description: 'Gives a random truth',
+  usage: 'animu [hug|pat|wink|face-palm]',
+  groups: [ 'fun' ],
+  DM: false,
+  cooldown: { type: 'map', time: 3 },
+  aliases: [ 't' ],
+  run: [AsyncFunction: run]
+}
+```
 - name: The command name, no spaces allowed
 - description: Description of the command
 - usage: how to use the command
@@ -98,23 +108,36 @@ module.exports = {
     > Only map is supported for now, and is preffered to try and limit db usage and to keep the bot quick
     - time: time in seconds of cooldown duration
 - aliases: an array of strings that can also trigger the command
+- run: in brackets, the code that will run when called upon
 
+### Example command
 ```js
 const { MessageEmbed } = require("discord.js");
+const fetch = require('node-fetch');
+const { choose } = require('../../config/funcs.js');
+
 
 module.exports = {
-    name: "ping",
-    description: "Show the websocket ping in milliseconds",
-    usage: "ping",
-    groups: ["information"],
-    DM: true,
-    cooldown: {type: "map", time: 0},
-    aliases: ["pong", "p"],
+    name: "animu",
+    description: "Gives a random truth",
+    usage: "animu [hug|pat|wink|face-palm]",
+    groups: ["fun"],
+    DM: false,
+    cooldown: {type: "map", time: 3},
+    aliases: ["ani"],
     run: async (client, message, args) => {
+
+        // setting rating
+        let animu = await choose(args, ["hug", "pat", "wink", "face-palm"], null);
+
+        let gif = (await fetch(`https://some-random-api.ml/animu/${animu}`).then(response => response.json())).link;
+
+        if (!gif)return client.err(message, "Animu", "No animu was returned, try again or get support");
+
         const embed = new MessageEmbed()
-        .setTitle('Ping')
+        .setTitle(`Animu - ${animu}`)
         .setColor(0x4B0082)
-        .setDescription(`Websocket ${client.ws.ping}ms`);
+        .setImage(gif);
         return message.reply(embed);
     }
 }
@@ -123,7 +146,10 @@ As you'll see all the responses are in an embed with the hex code `0x4B0082` (in
 
 ### Making an error message
 ```js
-return client.err(message, "Command name titled", "Reason for error");
+return client.err(message, "Command name titled", "Reason for error, no period");
 ```
 
-> Dumb Jackson thing of the day: I spent 2 hours on the otter command and only 1 and a half on the entire cooldown system
+> Dumb Jackson thing of the day: While making the embed command, I got a JS error, so I hosted it and the command still crashed the bot
+
+### Custom functions
+As you may have noticed, I require the `funcs.js` (in config folder) file which is just a collection of functions. Although you may realise my flag parser, is it's own file because it's a bigger function. if you're going to make a function, please try to keep it the same format as the other ones.
