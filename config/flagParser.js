@@ -18,7 +18,6 @@ exports.flagParse = async (flags, string) => {
 
         // remove the " if it's there
         current = current.replace(/^\"|\"$/g, "");
-        console.log(typeof current)
 
         // add to an exsisting flag (ignoring noFlag)
         if (currentFlag && currentFlag !== "noFlag") {
@@ -51,7 +50,5 @@ exports.flagParse = async (flags, string) => {
         }
     }
 
-
-    console.log(map);
     return map;
 }
