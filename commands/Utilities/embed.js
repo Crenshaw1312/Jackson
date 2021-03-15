@@ -17,21 +17,39 @@ module.exports = {
             {name: "footer", args: ["string"]},
             {name: "title", args: ["string"]},
             {name: "author", args: ["string"]},
-            {name: "color", args: ["string"]}
+            {name: "color", args: ["string"]},
         ];
+        let fields = [];
+        for (i = 1; i < 10; i++) {
+            fields.push({name: `field${i}`, args: ["string", "string", "boolean"]})
+        }
+        flags = flags.concat(fields);
 
         let embedData = await flagParse(flags, args.join(" "));
-        let provided = [];
-        for (let key of embedData.keys()) provided.push(key);
 
-        console.log(provided);
-
+        // add found data to the embed
         const embed = new MessageEmbed();
-        if (provided.includes("author")) embed.setAuthor(embedData.get("author")[0]);
-        if (provided.includes("title")) embed.setTitle(embedData.get("title")[0]);
-        if (provided.includes("description")) embed.setDescription(embedData.get("description")[0]);
-        if (provided.includes("footer")) embed.setFooter(embedData.get("fppter")[0]);
-        if (provided.includes("color")) embed.setColor(embedData.get("color")[0]);
+        for (let current of embedData.keys()) {
+            let value = embedData.get(current);
+            // Basics
+            switch (current) {
+                case "author": embed.setAuthor(value[0]);
+                    break;
+                case "title": embed.setTitle(value[0]);
+                    break;
+                case "description": embed.setDescription(value[0]);
+                    break;
+                case "color": embed.setColor(value[0]);
+                    break;
+                case "footer": embed.setFooter(value[0]);
+                    break;
+            }
+
+            // Fields
+            if (current.startsWith("field")) {
+                embed.addField(value[0], value[1], value[2])
+            }
+        }
 
         message.reply(embed);
     }
