@@ -12,16 +12,15 @@ module.exports = {
 
         const embed = new MessageEmbed()
         .setTitle('Invite')
-        .setDescription("Check console for invite link")
         .setColor(0x4B0082);
 
-        client.generateInvite({
+        let link = await client.generateInvite({
             permissions: [
               Permissions.FLAGS.ADMINISTRATOR,
             ]
-          })
-            .then(link => console.log(`Generated bot invite link: ${link}`));
+          });
         
+        embed.setDescription(`Generated bot invite link: [Link](${link})`);
         message.reply(embed);
     }
 }
