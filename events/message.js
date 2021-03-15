@@ -75,7 +75,7 @@ exports.run = async (client, message) => {
         command.run(client, message, args);
 
         // stop typing
-        return await message.channel.stopTyping();
+        return await message.channel.stopTyping(true);
 
     } catch (err) {
         console.log(err);
