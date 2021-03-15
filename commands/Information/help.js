@@ -45,7 +45,7 @@ module.exports = {
                 // indiviual command
                 if ( command.groups.indexOf("nsfw") > -1) nsfw = true;
                 embed.setTitle(`Help - ${command.name}`);
-                embed.setDescription("```css\n" + `\#Aliases \[${command.aliases.join(", ")}\]\n\#Usage \[${command.usage}\]\n\#Description \[${command.description}\]` + "\n```");
+                embed.setDescription(`\`\`\`\nAliases ${command.aliases.join(", ")}\nUsage ${command.usage}\nCooldown: ${command.cooldown.time} seconds\nGroups: ${command.groups.join(" ")}\nDescription: ${command.description}\n\`\`\``);
             } else {
                 // Groups
                 let group = groups.find(group => group.toLowerCase() == args[0])
