@@ -11,28 +11,27 @@ module.exports = {
     aliases: ["em"],
     run: async (client, message, args) => {
 
+        let flags = [
+            {name: "title", args: ["string"]},
+            {name: "description", args: ["string"]},
+            {name: "footer", args: ["string"]},
+            {name: "title", args: ["string"]},
+            {name: "author", args: ["string"]},
+            {name: "color", args: ["string"]}
+        ];
+
+        let embedData = await flagParse(flags, args.join(" "));
+        let provided = [];
+        for (let key of embedData.keys()) provided.push(key);
+
+        console.log(provided);
+
         const embed = new MessageEmbed();
-
-        let fields = [];
-        for (i = 0; 1 < 10; i++) {
-            fields.push({name: `field${i}`, args: ["string", "string", "boolean"]})
-        }
-        let options = fields.concat([
-            {name: "title", args: "string"},
-            {name: "desc", args: "string"},
-            {name: "footer", args: "string"},
-            {name: "title", args: "string"},
-            {name: "author", args: "string"},
-        ]);
-
-        console.log(options);
-
-        let embedData = await flagParse(options, args.join(" "));
-        let fieldData = embedData.keys().filter(embedItem => embedItem.startsWith("field"));
-        for (let field of fieldData) {
-            field = embedData.get(field);
-            embed.addField(field);
-        }
+        if (provided.includes("author")) embed.setAuthor(embedData.get("author")[0]);
+        if (provided.includes("title")) embed.setTitle(embedData.get("title")[0]);
+        if (provided.includes("description")) embed.setDescription(embedData.get("description")[0]);
+        if (provided.includes("footer")) embed.setFooter(embedData.get("fppter")[0]);
+        if (provided.includes("color")) embed.setColor(embedData.get("color")[0]);
 
         message.reply(embed);
     }

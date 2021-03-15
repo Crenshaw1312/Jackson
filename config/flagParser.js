@@ -1,6 +1,6 @@
 exports.flagParse = async (flags, string) => {
     // find all groups
-    let located = string.match(/("[^"]*")|([^"\s]*)/ig).filter(str => str !== '');
+    let located = string.match(/"[^"]*"|[^"\s]*/img).filter(str => str !== '');
     const map = new Map();
     let currentFlag = "";
     // combine two that are next to eachother
@@ -13,20 +13,25 @@ exports.flagParse = async (flags, string) => {
                    currentFlag = current.slice(1);
                }
            }
+           continue;
+        }
+
+        // remove the " if it's there
+        current = current.replace(/^\"|\"$/g, "");
+        console.log(typeof current)
 
         // add to an exsisting flag (ignoring noFlag)
-        } else if (currentFlag && currentFlag !== "noFlag") {
+        if (currentFlag && currentFlag !== "noFlag") {
             let lastMapIndex = map.get(currentFlag).length;
-            console.log(lastMapIndex);
             let flagArgs = "";
             for (let flag of flags) {
                 if (flag.name == currentFlag) flagArgs = flag.args;
             }
     
             // change the type
-            if (current.match(/^t(ruth)?|f(alse)?|1|0$/ig)) {
+            if (current.match(/^(t(rue)?|f(alse)?|1|0)$/i)) {
                 current = Boolean(current);
-            } else if (current.match(/^\d+$/g)) {
+            } else if (current.match(/^\d+$/)) {
                 current = Number(current);
             }
     
