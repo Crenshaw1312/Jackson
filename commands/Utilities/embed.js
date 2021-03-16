@@ -10,6 +10,7 @@ module.exports = {
     cooldown: {type: "map", time: 0},
     aliases: ["em"],
     run: async (client, message, args) => {
+        if (!args[0]) return client.err(message, "Embed", "No flags provided\n```\n-author <string>\n-title <string>\n-description <string>\n-footer <string>\n-color <color name or hex>\n-field1 <string> <string> <booleen>\n-field2 <string> <string> <booleen>\n-field3....\n```");
 
         let flags = [
             {name: "title", args: ["string"]},
