@@ -62,6 +62,7 @@ module.exports = {
     prefix: "",
     youtubeToken: "",
     geniusToken: "",
+    omdbToken: "",
     jellybeans: {
         maxGive: 3,
         maxTake: 1,
@@ -72,7 +73,7 @@ module.exports = {
 }
 ```
 4. Insert your tokens
-> The `youtubeToken` and `geniusToken` are not required, but allow more commands to run.
+> The `youtubeToken`, `geniusToken`, `omdbToken` are not required, but allow more commands to run.
 
 > Everything in `jellybeans` are the defaults, the can be edited with `jbsets` (per guild)
 
