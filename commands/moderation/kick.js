@@ -10,7 +10,7 @@ module.exports = {
     aliases: [],
     run: async (client, message, args) => {
 
-        if (!message.member.permissions.has('KICK_MEMBERS') || !message.member.permissions.has('ADMINISTRATOR')) return client.err(message, "Kick", 'You do not have permissons to kick');
+        if (!message.member.permissions.has('KICK_MEMBERS')) return client.err(message, "Kick", 'You do not have permissons to kick');
 
         const embed = new MessageEmbed()
         .setTitle('Kick')
