@@ -7,7 +7,7 @@ module.exports = {
     usage: "purge <amount> [@user] [contains]",
     groups: ["moderation"],
     DM: true,
-    cooldown: {type: "map", time: 2},
+    cooldown: {type: "map", time: 0},
     aliases: ["clean", "wipe"],
     run: async (client, message, args) => {
         if (!message.member.permissions.has('MANAGE_MESSAGES')) return client.err(message, "Purge", 'You do not have permissons to purge');

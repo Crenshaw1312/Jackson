@@ -9,7 +9,7 @@ module.exports = {
     usage: "ass",
     groups: ["nsfw"],
     DM: true,
-    cooldown: {type: "map", time: 2},
+    cooldown: {type: "map", time: 5},
     aliases: ["butt", "booty"],
     run: async (client, message, args) => {
         const embed = new MessageEmbed()

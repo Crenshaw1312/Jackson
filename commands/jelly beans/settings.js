@@ -8,7 +8,7 @@ module.exports = {
     usage: "jellybeansettings [maxgive|maxtake] <new ammount>",
     groups: ["jellybean"],
     DM: true,
-    cooldown: {type: "map", time: 3},
+    cooldown: {type: "map", time: 5},
     aliases: ["jbsets", "jbsettings"],
     run: async (client, message, args) => {
         const jellyBeanData = client.config.jellybeans

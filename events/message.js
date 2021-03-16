@@ -40,7 +40,7 @@ exports.run = async (client, message) => {
             commandsWithCooldown = [];
         }
         // the command name is there, so tell user they're on cooldown
-        if (commandsWithCooldown.indexOf(command.name) > -1) return client.err(message, "Cooldown", "You're currently on cooldown for this command");
+        if (commandsWithCooldown.indexOf(command.name) > -1) return client.err(message, "Cooldown", `This command has a cooldown of ${command.cooldown.time} seconds`);
 
         // add the command to their cooldown list otherwise
         if (command.cooldown.type == "map"){
@@ -64,7 +64,7 @@ exports.run = async (client, message) => {
         if (command.DM === false && !message.guild) return client.err(message, "DMs", "This command cannot be ran in DMs");
         if (command.DM === true && !message.guild) {
             console.log(`Ran ${command.name} \[${args.join(" ")}\]- ${message.author.username}#${message.author.discriminator} \(${message.author.id}\) (DM)`);
-            command.run(client, message, args);
+            command.run(client, message, args, command);
             return message.channel.stopTyping(true);
         }
         if (command.groups[0] == "nsfw" && !message.channel.nsfw) return client.err(message, "NSFW", "This is not a NSFW channel");
@@ -72,7 +72,7 @@ exports.run = async (client, message) => {
 
         // no overrides or nsfw filters stopped the command, run normally
         console.log(`Ran ${command.name} \[${args.join(" ")}\]- ${message.author.username}#${message.author.discriminator} \(${message.author.id}\) (guild - ${message.guild.name})`);
-        command.run(client, message, args);
+        command.run(client, message, args, command);
 
         // stop typing
         return await message.channel.stopTyping(true);

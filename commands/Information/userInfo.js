@@ -7,7 +7,7 @@ module.exports = {
     usage: "avatar [mention]",
     groups: ["information", "fun"],
     DM: false,
-    cooldown: {type: "map", time: 2},
+    cooldown: {type: "map", time: 5},
     aliases: ["who", "whois"],
     run: async (client, message, args) => {
         const member = message.mentions.members.first() || message.member;

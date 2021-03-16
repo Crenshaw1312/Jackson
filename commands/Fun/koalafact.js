@@ -7,7 +7,7 @@ module.exports = {
     usage: "koalafact",
     groups: ["fun", "animals"],
     DM: true,
-    cooldown: {type: "map", time: 2},
+    cooldown: {type: "map", time: 3},
     aliases: ["kf"],
     run: async (client, message, args) => {
         let fact = (await fetch("https://some-random-api.ml/facts/koala").then(response => response.json())).fact;

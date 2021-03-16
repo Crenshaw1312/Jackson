@@ -6,7 +6,7 @@ module.exports = {
     usage: "ping",
     groups: ["information"],
     DM: true,
-    cooldown: {type: "map", time: 0},
+    cooldown: {type: "map", time: 3},
     aliases: ["pong", "p"],
     run: async (client, message, args) => {
     const embed = new MessageEmbed()
