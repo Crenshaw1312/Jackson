@@ -18,12 +18,7 @@ module.exports = {
         target = target.first();
 
         // finding the mute role
-       let roleCache = await message.guild.roles.fetch()
-        .then(roles => roles.cache);
-        let muteRole = false;
-        for (let role of roleCache) {
-            if (role[1].name == "mute" || role[1].name == "muted") muteRole = role[1];
-        }
+        let muteRole = message.guild.roles.cache.find(role => role.name === 'muted'||role.name === 'mute');
         // make a mute role if there is none
         if (!muteRole) {
             // Create a new role with data and a reason
