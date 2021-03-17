@@ -5,7 +5,7 @@ module.exports = {
     description: "Mute any given user",
     usage: "mute <@user> [duration]",
     groups: ["moderation"],
-    DM: true,
+    DM: false,
     cooldown: {type: "map", time: 0},
     aliases: ["silence"],
     run: async (client, message, args) => {
@@ -14,7 +14,7 @@ module.exports = {
 
         let target = message.mentions.members;
         let clientMember = await message.guild.members.fetch(client.user.id)
-        if (!target) return client.err(message, "Mute", "Please provide a user to mute");
+        if (!target.first()) return client.err(message, "Mute", "Please provide a user to mute");
         target = target.first();
 
         // finding the mute role
@@ -41,9 +41,15 @@ module.exports = {
 
         // give the mute role to the specified user
         if (clientMember.roles.highest.rawPosition < message.mentions.members.first().roles.highest.rawPosition) return client.err(message, "Mute", "This user's highest role is higher then mine, I cannot mute them.");
+        
         target.roles.remove(target.roles.cache);
-
         target.roles.add(muteRole);
+
+        const embed = new MessageEmbed()
+        .setColor(0x4B0082)
+        .setTitle("Mute")
+        .setDescription(`Muted ${target.user.username}`);
+        message.reply(embed);
         
     }
 }
