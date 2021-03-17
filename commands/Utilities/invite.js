@@ -4,7 +4,7 @@ module.exports = {
     name: "invite",
     description: "Evaluate entered code",
     usage: "invite",
-    groups: ["owner"],
+    groups: ["utilites"],
     DM: true,
     cooldown: {type: "map", time: 0},
     aliases: ["inv"],
