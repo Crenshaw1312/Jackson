@@ -10,10 +10,11 @@ exports.run = async (client, message) => {
     if (message.content == (clientMention))  return await client.commands.get("help").run(client, message, args);
 
     // prefix
-    let prefix = await database.get(`${message.guild.id}.prefix`)
+    let prefix;
+    if (message.guild) prefix = await database.get(`${message.guild.id}.prefix`);
     if (!prefix) {
         prefix = client.config.prefix
-        await database.set(`${message.guild.id}.prefix`, client.config.prefix);
+        if (message.guild) await database.set(`${message.guild.id}.prefix`, client.config.prefix);
     }
     client.prefix = prefix;
     if (message.content.startsWith(clientMention)) prefix = clientMention;
@@ -24,7 +25,7 @@ exports.run = async (client, message) => {
     const cmd = args.shift().toLowerCase(); 
     
     // Jelly bean data :3
-    client.jellybean = await database.get(`${message.guild.id}.jellybeandata`);
+    if (message.guild) client.jellybean = await database.get(`${message.guild.id}.jellybeandata`);
 
 
     // does the command exsist?
