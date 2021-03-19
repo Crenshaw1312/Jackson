@@ -1,5 +1,5 @@
 const fs = require('fs');
-const path = require("path")
+const path = require("path");
 const { MessageEmbed } = require("discord.js");
 const chalk = require('chalk');
 

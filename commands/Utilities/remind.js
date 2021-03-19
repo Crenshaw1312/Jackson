@@ -6,7 +6,7 @@ module.exports = {
     name: "remind",
     description: "Set a reminder",
     usage: "remind <duration> [remind message]",
-    groups: ["utilites"],
+    groups: ["utilities"],
     DM: false,
     cooldown: {type: "map", time: 5},
     aliases: ["rmnd"],
