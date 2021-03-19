@@ -62,21 +62,18 @@ exports.run = async (client, message) => {
     try {
 
         // errors and overrides, the running the command
+        // not able to run in DMS
         if (command.DM === false && !message.guild) return client.err(message, "DMs", "This command cannot be ran in DMs");
-        if (command.DM === true && !message.guild) {
-            console.log(`Ran ${command.name} \[${args.join(" ")}\]- ${message.author.username}#${message.author.discriminator} \(${message.author.id}\) (DM)`);
-            command.run(client, message, args, command);
-            return message.channel.stopTyping(true);
+        if (command.groups[0] == "nsfw" && message.guild === null) {
+            if (!message.channel.nsfw) return client.err(message, "NSFW", "This is not a NSFW channel");
         }
-        if (command.groups[0] == "nsfw" && !message.channel.nsfw) return client.err(message, "NSFW", "This is not a NSFW channel");
-        if (command.groups[0] == "owner" && message.author.id !== '766385575530856458') return client.err(message, "Crenshaw Only", "This command can only be run by the bot owner Crenshaw#1312");
+        // owner only
+        if (command.groups[0] == "owner" && message.author.id !== '766385575530856458') return client.err(message, "Crenshaw Only", "This command can only be run by the bot owner, Crenshaw#1312");
 
         // no overrides or nsfw filters stopped the command, run normally
-        console.log(`Ran ${command.name} \[${args.join(" ")}\]- ${message.author.username}#${message.author.discriminator} \(${message.author.id}\) (guild - ${message.guild.name})`);
         command.run(client, message, args, command);
-
-        // stop typing
-        return await message.channel.stopTyping(true);
+        await message.channel.stopTyping(true);
+        return console.log(`Ran ${command.name} \[${args.join(" ")}\]- ${message.author.username}#${message.author.discriminator} \(${message.author.id}\) (guild - ${message.guild.name})`);
 
     } catch (err) {
         console.log(err);
