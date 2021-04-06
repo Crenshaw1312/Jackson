@@ -59,6 +59,7 @@ There are commands that only the owner of the bot can run, Crenshaw#1312, and th
 ```js
 module.exports = {
     token: "",
+    owner: "",
     prefix: "",
     youtubeToken: "",
     geniusToken: "",
