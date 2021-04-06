@@ -58,7 +58,6 @@ exports.run = async (client, message) => {
         }
     }
 
-    message.channel.startTyping(20); // max typing time is 20 seconds
     try {
 
         // errors and overrides, the running the command
@@ -72,8 +71,9 @@ exports.run = async (client, message) => {
         if (command.groups[0] == "owner" && message.author.id !== config.owner) return client.err(message, "Owner Only", "This command can only be run by the bot owner");
 
         // no overrides or nsfw filters stopped the command, run normally
-        command.run(client, message, args, command);
-        await message.channel.stopTyping(true);
+        message.channel.startTyping(20);
+        await command.run(client, message, args, command);
+        message.channel.stopTyping(true);
         return console.log(`Ran ${command.name} \[${args.join(" ")}\]- ${message.author.username}#${message.author.discriminator} \(${message.author.id}\)`);
 
     } catch (err) {

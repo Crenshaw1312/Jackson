@@ -6,6 +6,7 @@ module.exports = async client => {
             .setTitle(`Error - ${title}`)
             .setDescription(error)
             .setColor(0x4B0082);
+            message.channel.stopTyping(true);
         return message.reply(embed);
     }
 }
