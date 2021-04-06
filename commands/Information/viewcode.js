@@ -12,10 +12,10 @@ module.exports = {
     aliases: ["vc"],
     run: async (client, message, args) => {
         let command = client.commands.get(args[0]) || client.commands.get(client.aliases.get(args[0]));
-		if (!command) return client.err(message, "ViewCode", "Command not found");
+        if (!command) return client.err(message, "ViewCode", "Command not found");
 
-		const commandFolders = fs.readdirSync('./commands');
-		const folderName = commandFolders.find(folder => fs.readdirSync(`./commands/${folder}`).indexOf(`${command.name}.js`) > -1);
+        const commandFolders = fs.readdirSync('./commands');
+        const folderName = commandFolders.find(folder => fs.readdirSync(`./commands/${folder}`).indexOf(`${command.name}.js`) > -1);
         const url = `https://raw.githubusercontent.com/Crenshaw1312/Jackson/main/commands/${folderName}/${command.name}.js`
 
         // Get the Code
