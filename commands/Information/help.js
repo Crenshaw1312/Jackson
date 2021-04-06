@@ -39,7 +39,6 @@ module.exports = {
 
         // Command specific
         } else {
-
             let command = client.commands.get(args[0]) || client.commands.get(client.aliases.get(args[0]));
             if (command) {
                 // indiviual command
@@ -49,7 +48,7 @@ module.exports = {
             } else {
                 // Groups
                 let group = groups.find(group => group.toLowerCase() == args[0])
-                if (!group) return;
+                if (!group) return client.err(message, "Help", "Command or group not found");
                 for (let command of client.groups.get(group)) {
                     desc += `**${command.name}**, `
                 }
@@ -58,7 +57,9 @@ module.exports = {
                 embed.setTitle(`Help - ${group}`);
                 embed.setDescription(desc);
             }
-            if ( nsfw && !message.channel.nsfw) return client.err(message, "NSFW", "This is not a NSFW channel");
+            if (message.guild) {
+                if ( nsfw && !message.channel.nsfw) return client.err(message, "NSFW", "This is not a NSFW channel");
+            }
             return message.reply(embed);
         }
         return message.reply(embed);
